@@ -1,0 +1,43 @@
+
+@font-face {
+    font-family: 'CoreSans';
+    src: url('CoreSansC-55Medium.eot');
+    src: local('Core Sans C 55 Medium'), local('CoreSansC-55Medium'),
+        url('./fonts/CoreSansC-55Medium.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/CoreSansC-55Medium.woff2') format('woff2'),
+        url('./fonts/CoreSansC-55Medium.woff') format('woff'),
+        url('.fonts//CoreSansC-55Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CoreSans';
+    src: url('CoreSansC-75ExtraBold.eot');
+    src: local('Core Sans C 75 ExtraBold'), local('CoreSansC-75ExtraBold'),
+        url('./fonts/CoreSansC-75ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/CoreSansC-75ExtraBold.woff2') format('woff2'),
+        url('./fonts/CoreSansC-75ExtraBold.woff') format('woff'),
+        url('./fonts/CoreSansC-75ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Causten';
+    src: url('./fonts/Causten Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Causten';
+    src: url('./fonts/Causten Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Causten';
+    src: url('./fonts/Causten Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
