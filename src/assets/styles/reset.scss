@@ -3,6 +3,7 @@
     padding: 0px;
     margin: 0px;
     border: none;
+    font-family:'Causten', serif;
 } 
 
 *,
@@ -17,10 +18,12 @@ a,
 a:link,
 a:visited {
     text-decoration: none;
+    color:transparent
 }
 
 a:hover {
     text-decoration: none;
+    color:transparent
 }
 
 /* Common */
@@ -43,19 +46,6 @@ h6,
 p {
     font-size: inherit;
     font-weight: inherit;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
-    font-family:'CoreSans', serif;
-}
-
-p{
-    font-family:'Causten', serif;
 }
 
 ul,
@@ -114,9 +104,6 @@ button::-moz-focus-inner {
     border: 0;
 }
 
-label {
-    cursor: pointer;
-}
 
 legend {
     display: block;
