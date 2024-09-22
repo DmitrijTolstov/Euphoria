@@ -1,7 +1,46 @@
+@mixin line {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(190, 188, 189, 1);
+}
+
+@mixin button($border, $bg, $color) {
+  padding-block: 12px;
+  padding-inline: 48px;
+  border-radius: 8px;
+  background-position: center;
+  background-position-x: 150px;
+  background-repeat: no-repeat;
+  color: $purple;
+  font-weight: 500;
+  transition: all 0.3s linear;
+
+  @if $border ==true {
+    border: 1px solid $gray;
+  }
+
+  @if $color ==true {
+    color: white;
+  }
+
+  @if $bg ==true {
+    background-color: $purple;
+  }
+
+  &:hover,
+  &:active {
+    background-color: $purple;
+    color: white;
+  }
 
 
-@mixin line{
-        width: 100%;
-        height: 1px;
-        background-color: rgba(190, 188, 189, 1);
+}
+
+
+@mixin link {
+  text-decoration: underline;
+  text-underline-position: under;
+  color: $gray;
+  margin-inline-start: 5px;
+  cursor: pointer;
 }
