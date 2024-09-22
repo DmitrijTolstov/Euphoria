@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import SignIn from '@/layouts/SignIn.vue';
+import Sign from '@/layouts/Sign.vue';
 
 
 
 </script>
 
 <template>
-    <SignIn />
+    <Sign />
 </template>
 
 <style scoped></style>
