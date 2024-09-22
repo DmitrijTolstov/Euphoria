@@ -1,17 +1,23 @@
 <script setup>
 
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import Button from './button.vue';
+import { auth } from '../stores/auth';
 
+const store = auth()
 
+const resetPassword = (() => {
+    store.resetPassword()
+})
 
-const props = defineProps({
-    signIn: Boolean
+const newPassword = (() => {
+    store.newPassword()
 })
 
 
+
 const sign = computed(() => {
-    return props.signIn
+    return store.sign
         ? [{ 'email': 'User name or email address', 'password': 'Password' }]
         : [{ 'email': 'Email Address', 'password': 'Password' }]
 })
@@ -36,11 +42,12 @@ const sign = computed(() => {
             <input id='password' type="email">
             <p class="error">error password</p>
         </div>
-        <div class="form-password_link" :class='{ " signIn": props.signIn, "signUp": !props.signIn }'>
-            <span>{{ props.signIn ? `Use 8 or more characters with a mix of letters, numbers &
-                symbols ` : 'Forget your password?' }}</span>
+        <div class="form-password_link" :class='{ " store.sign": !store.login, "signUp": store.login }'>
+            <span @click='resetPassword()' v-if='store.login'>Forget your password?</span>
+            <span v-else> Use 8 or more characters with a mix of letters, numbers &
+                symbols</span>
         </div>
-        <div class="form-checkbox" v-if="props.signIn">
+        <div class="form-checkbox" v-if="!store.login">
             <div class="form-checkbox-container">
                 <input type="checkbox" name="" id="agree">
                 <label for="agree">Agree to our Terms of use and Privacy Policy </label>
@@ -50,9 +57,10 @@ const sign = computed(() => {
                 <label for="Subscribe">Subscribe to our monthly newsletter</label>
             </div>
         </div>
-        <Button :title='props.signIn ? "Sign In" : "Sign Up"' :color='"white"' />
+        <Button v-if="store.login" class='form_btn' :title='"Sign In"' />
+        <Button @click='newPassword()' v-else class=' form_btn' :title='"Sign Up"' />
     </form>
-    <div class="link-account" v-if="props.signIn">
+    <div class="link-account" @click='newPassword()' v-if="store.login">
         Don’t have an account? <a href="">Sign up</a>
     </div>
     <div class="link-account" v-else>
@@ -60,7 +68,7 @@ const sign = computed(() => {
     </div>
 </template>
 
-<style scoped lang='scss'>
+<style lang='scss'>
 .form {
 
 
@@ -70,18 +78,9 @@ const sign = computed(() => {
         position: relative;
 
         &:not(:last-child) {
-            margin-block-start: 33px;
+            margin-block-start: 20px;
         }
 
-        input {
-            width: 100%;
-            border: 1px solid $gray;
-            border-radius: 8px;
-            padding-inline: 8px;
-            padding-block: 8px;
-            margin-block-start: 10px;
-            margin-block-end: 4px;
-        }
 
         label {
             color: $gray;
@@ -91,7 +90,7 @@ const sign = computed(() => {
     }
 
     &-checkbox {
-        margin-block: 30px 58px;
+        margin-block: 30px 50px;
 
         &-container {
             display: flex;
@@ -117,6 +116,14 @@ const sign = computed(() => {
         }
     }
 
+    &-newPassword {
+        margin-block-start: 20px;
+    }
+
+    &_btn {
+        @include button(false, true, true)
+    }
+
 }
 
 .hide {
@@ -133,13 +140,11 @@ const sign = computed(() => {
     margin-block-start: 10px;
 
     a {
-        text-decoration: underline;
-        text-underline-position: under;
-        color: $gray;
+        @include link
     }
 }
 
-.signIn {
+.store.sign {
     text-align: left;
 }
 
@@ -149,6 +154,7 @@ const sign = computed(() => {
 
 .error {
     color: rgba(238, 29, 82, 1);
-    display: none;
+    opacity: 0;
+    cursor: default;
 }
 </style>
