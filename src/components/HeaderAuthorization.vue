@@ -1,6 +1,17 @@
 <script setup>
 import Button from './button.vue';
 
+import { auth } from '../stores/auth';
+
+const store = auth()
+
+const logIn = (() => {
+    store.logIn()
+})
+const signUp = (() => {
+    store.sighUp()
+})
+
 
 </script>
 
@@ -18,10 +29,8 @@ import Button from './button.vue';
                     <option value='English (united States)'>English (united States)</option>
                 </select>
                 <div class="header-buttons buttons">
-                    <Button class='buttons_login' :title='"Login"' :color='"white"' :width='140' :bg='"$purple"'
-                        :border='false' />
-                    <Button class='buttons_sign' :title='"Sign Up"' :color='"$purple"' :width='156' :bg='"transparent"'
-                        :border='true' />
+                    <Button @click='logIn()' class='header-buttons_login' :title='"Login"' />
+                    <Button @click='signUp()' class='header-buttons_sign' :title='"Sign Up"' />
                 </div>
             </div>
         </header>
@@ -34,6 +43,7 @@ import Button from './button.vue';
     display: flex;
     justify-content: space-between;
     padding-block: 34px 31px;
+    align-items: center;
 
     &-right {
         display: flex;
@@ -43,6 +53,14 @@ import Button from './button.vue';
     &-buttons {
         display: flex;
         gap: 25px;
+
+        &_login {
+            @include button(true, false, false)
+        }
+
+        &_sign {
+            @include button(true, false, false)
+        }
     }
 
     &-search {
@@ -56,6 +74,7 @@ import Button from './button.vue';
         background-position: center;
         background-position-x: 51px;
         border-radius: 8px;
+
     }
 
     &-input {
