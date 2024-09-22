@@ -2,33 +2,24 @@
 import Button from './button.vue';
 import Form from './form.vue';
 
-
-
-const props = defineProps({
-    title: String
-})
-
 </script>
 
 <template>
 
     <div class="authorization">
-        <img src="@/assets/images/authorization/signIn.png" alt="" class="authorization_img">
-        <div class="container">
-            <div class="authorization-content">
-                <h2 class="authorization__title">{{ title }}</h2>
-                <p class="authorization__text"></p>
-                <div class="authorization-buttons">
-                    <Button image='src/assets/images/socialLink/Google.svg' :title='"Continue With Google"'
-                        :border='true' />
-                    <Button image='src/assets/images/socialLink/twitter.svg' :title='"Continue With Twitter"'
-                        :border='true' />
-                </div>
-                <div class="or">
-                    OR
-                </div>
-                <Form />
+        <div class="authorization-content">
+            <h2 class="authorization__title">Sign In Page</h2>
+            <p class="authorization__text">{{ text }}</p>
+            <div class="authorization-buttons">
+                <Button class='authorization__btn authorization__btn_google'
+                    image='src/assets/images/socialLink/Google.svg' :title='"Continue With Google"' />
+                <Button class='authorization__btn authorization__btn_twitter'
+                    image='src/assets/images/socialLink/twitter.svg' :title='"Continue With Twitter"' />
             </div>
+            <div class="or">
+                OR
+            </div>
+            <Form />
         </div>
     </div>
 
@@ -38,10 +29,6 @@ const props = defineProps({
 .authorization {
     display: flex;
 
-    &_img {
-        height: 853px;
-    }
-
     &-content {
         margin-block-start: 60px;
         width: 568px;
@@ -49,6 +36,11 @@ const props = defineProps({
 
     &__title {
         font-size: $title;
+        margin-block-end: 50px;
+    }
+
+    &__text {
+        margin-block-start: 10px;
     }
 
     &-buttons {
@@ -56,7 +48,20 @@ const props = defineProps({
         display: flex;
         flex-direction: column;
         gap: 10px;
-        margin-block-start: 50px;
+        margin-block-start: 15px;
+
+    }
+
+    &__btn {
+        @include button(true, false, false);
+
+        &_twitter {
+            background-image: url(@/assets/images/socialLink/twitter.svg);
+        }
+
+        &_google {
+            background-image: url(@/assets/images/socialLink/Google.svg);
+        }
     }
 
 
