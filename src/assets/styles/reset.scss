@@ -3,8 +3,8 @@
     padding: 0px;
     margin: 0px;
     border: none;
-    font-family:'Causten', serif;
-} 
+    font-family: 'Causten', serif;
+}
 
 *,
 *::before,
@@ -18,12 +18,14 @@ a,
 a:link,
 a:visited {
     text-decoration: none;
-    color:transparent
+    color: transparent;
+    cursor: pointer;
+
 }
 
 a:hover {
     text-decoration: none;
-    color:transparent
+    color: transparent
 }
 
 /* Common */
