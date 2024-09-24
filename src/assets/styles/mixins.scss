@@ -44,3 +44,19 @@
   margin-inline-start: 5px;
   cursor: pointer;
 }
+
+
+@mixin search {
+  background-color: $light-gray;
+  padding-inline-start: 30px;
+  padding-inline-end: 10px;
+  max-width: 184px;
+  position: relative;
+  background-image: url('@/assets/images/icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: left;
+  background-position-x: 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+
+}
