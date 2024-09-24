@@ -33,7 +33,8 @@ export const auth = defineStore('auth',{
 		},
 		backToLogin(){
 			this.sign = true
-			this.checkedEmail = false
+			this.checkedEmail = false,
+			this.resetPass = false
 			this.image = 'src/assets/images/authorization/signIn.png'
 		},
 		checkEmail(){
