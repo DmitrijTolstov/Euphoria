@@ -60,8 +60,8 @@ const sign = computed(() => {
         <Button v-if="store.login" class='form_btn' :title='"Sign In"' />
         <Button @click='newPassword()' v-else class=' form_btn' :title='"Sign Up"' />
     </form>
-    <div class="link-account" @click='newPassword()' v-if="store.login">
-        Don’t have an account? <a href="">Sign up</a>
+    <div class="link-account" v-if="store.login">
+        Don’t have an account? <a @click='newPassword()'>Sign up</a>
     </div>
     <div class="link-account" v-else>
         Sign up Already have an account? <a href="">Log in</a>
