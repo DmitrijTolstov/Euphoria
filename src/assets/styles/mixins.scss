@@ -4,14 +4,16 @@
   background-color: rgba(190, 188, 189, 1);
 }
 
-@mixin button($border, $bg, $color) {
+@mixin button($border, $bg, $color: $purple) {
   padding-block: 12px;
   padding-inline: 48px;
   border-radius: 8px;
   background-position: center;
   background-position-x: 150px;
   background-repeat: no-repeat;
-  color: $purple;
+  background-color: $bg;
+  border: 1px solid $border;
+  color: $color;
   font-weight: 500;
   transition: all 0.3s linear;
 
@@ -19,20 +21,9 @@
     border: 1px solid $gray;
   }
 
-  @if $color ==true {
-    color: white;
-  }
-
   @if $bg ==true {
     background-color: $purple;
   }
-
-  &:hover,
-  &:active {
-    background-color: $purple;
-    color: white;
-  }
-
 
 }
 
