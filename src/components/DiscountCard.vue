@@ -7,15 +7,14 @@ const limited = ref(false)
 
 const maincolor = ref('black')
 
-const content = ref(false)
-
-
 const props = defineProps({
 	img: String,
 	title: String,
 	text: String,
 	sale: String,
-	link: String
+	link: String,
+	limitedStock: false,
+	discount: false
 })
 
 
@@ -26,13 +25,13 @@ const props = defineProps({
 
 <template>
 	<div :style='{ backgroundImage: `url(${props.img})` }' class="card">
-		<div :style='{ color: maincolor }' v-if='content' class="card-content-shop">
-			<div v-if='limited' class="card-content-shop__limited">
+		<div :style='{ color: maincolor }' v-if='props.discount' class="card-content-shop">
+			<div v-if='props.limitedStock' class="card-content-shop__limited">
 				<span>Limited Stock</span>
 			</div>
-			<h4 class="card-content-shop__title">Printed T-Shirt</h4>
-			<p class="card-content-shop__text">New Designs Every Week</p>
-			<p class="card-content-shop__sale">UPTO 40% OFF</p>
+			<h4 class="card-content-shop__title">{{ props.title }}</h4>
+			<p class="card-content-shop__text">{{ props.text }}</p>
+			<p class="card-content-shop__sale">{{ props.sale }}</p>
 			<div class="arrow">
 				<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
@@ -58,17 +57,16 @@ const props = defineProps({
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	padding-inline: 28px;
-	width: 604px;
 	border-radius: 10px;
-	min-height: 355px;
-	margin-block-end: 99px;
+	min-width: 400px;
+	height: 400px;
 
 
 	&-content {
 		max-width: 250px;
+		margin-inline-start: 25px;
 		color: white;
-		padding-block-start: 70px;
+		margin-block-start: 70px;
 
 		&__title {
 			font-size: $card-title;
@@ -101,8 +99,9 @@ const props = defineProps({
 			color: white;
 			display: flex;
 			flex-direction: column;
-			max-width: 50%;
-			padding-block: 64px 41px;
+			max-width: 200px;
+			margin-inline: 25px 25px;
+			margin-block-start: 65px;
 
 			&__title {
 				font-size: $card-title;
@@ -145,5 +144,15 @@ const props = defineProps({
 		padding-block: 10px;
 		margin-block-start: 30px;
 	}
+
+	&:nth-last-child(1) {
+		flex-grow: 2;
+	}
+
+	&:nth-last-child(2) {
+		flex-grow: 2;
+	}
+
+
 }
 </style>
