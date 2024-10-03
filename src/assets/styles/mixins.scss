@@ -56,4 +56,17 @@
   width: 6px;
   background-color: $purple;
   border-radius: 10px;
+  height: 30px;
+  margin-inline-end: 20px;
+}
+
+@mixin arrow($color, $size, $border-width) {
+  position: absolute;
+  width: $size;
+  height: $size;
+  border-bottom: $border-width solid $color;
+  border-left: $border-width solid $color;
+  cursor: pointer;
+
+
 }
