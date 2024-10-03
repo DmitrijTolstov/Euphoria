@@ -95,12 +95,7 @@ const store = slider()
 	}
 
 	.arrow {
-		position: absolute;
-		width: 25px;
-		height: 25px;
-		border-bottom: 3px solid white;
-		border-left: 3px solid white;
-		cursor: pointer;
+		@include arrow(white, 25px, 3px)
 	}
 
 	.slider-arrow_left {
