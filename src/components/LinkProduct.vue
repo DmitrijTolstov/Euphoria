@@ -1,12 +1,14 @@
 <script setup>
 import { productCard } from '../stores/ProductCard';
+import LinkCard from './LinkCard.vue';
 import ProductCard from './ProductCard.vue';
+
 
 import { ref } from 'vue'
 
 const store = productCard()
 
-const cards = ref(store.cardArrival)
+const cards = ref(store.linkCard)
 
 
 </script>
@@ -21,8 +23,8 @@ const cards = ref(store.cardArrival)
 		</div>
 
 		<div class="arrival-container_cards">
-			<ProductCard class='arrival-container_card' v-for='card in cards' :key='card' :product-name='card.content'
-				:product-image='card.image' />
+			<linkCard class='arrival-container_card' v-for='card in cards' :key='card' :image='card.image'
+				:title='card.content.title' :name='card.content.name' :arrival='card.arrival' />
 
 		</div>
 		<div class="arrow">
