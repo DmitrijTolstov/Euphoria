@@ -1,11 +1,10 @@
 <script setup>
-import Button from './button.vue';
+import Button from '@/components/button.vue';
 
-import { ref } from 'vue'
+import { ref, computed } from 'vue';
 
-const limited = ref(false)
 
-const maincolor = ref('black')
+
 
 const props = defineProps({
 	img: String,
@@ -13,11 +12,18 @@ const props = defineProps({
 	text: String,
 	sale: String,
 	link: String,
-	limitedStock: false,
-	discount: false
+	limitedStock: Boolean,
+	discount: Boolean,
+	color: String,
+	direction: String
 })
 
 
+const contentRight = ref(props.direction === 'right' ? 'auto' : '25px')
+
+const sizeMarginBlock = computed(() => {
+	return props.limitedStock ? "35px" : "65px"
+})
 
 
 
@@ -25,7 +31,8 @@ const props = defineProps({
 
 <template>
 	<div :style='{ backgroundImage: `url(${props.img})` }' class="card">
-		<div :style='{ color: maincolor }' v-if='props.discount' class="card-content-shop">
+		<div :style='{ color: props.color, marginBlockStart: sizeMarginBlock, marginInlineStart: contentRight }'
+			v-if='props.discount' class="card-content-shop">
 			<div v-if='props.limitedStock' class="card-content-shop__limited">
 				<span>Limited Stock</span>
 			</div>
@@ -36,10 +43,10 @@ const props = defineProps({
 				<svg width="23" height="26" viewBox="0 0 23 26" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path
 						d="M11.8423 1.66675L11.8423 23.675M22 15.2103L13.0394 24.1709C12.3783 24.832 11.3064 24.832 10.6452 24.1709L1.68465 15.2103"
-						:stroke="maincolor" stroke-width="2" stroke-linecap="round" />
+						:stroke="props.color" stroke-width="2" stroke-linecap="round" />
 				</svg>
 			</div>
-			<Button :style='{ color: maincolor, borderColor: maincolor }' class='card_btn' :title='"SHOP NOW"' />
+			<Button :style='{ color: props.color, borderColor: props.color }' class='card_btn' :title='"SHOP NOW"' />
 		</div>
 
 		<div v-else class="card-content">
@@ -99,14 +106,20 @@ const props = defineProps({
 			color: white;
 			display: flex;
 			flex-direction: column;
-			max-width: 200px;
-			margin-inline: 25px 25px;
-			margin-block-start: 65px;
+			max-width: 180px;
+			align-items: center;
+			text-align: center;
+			margin-inline: 25px;
 
 			&__title {
 				font-size: $card-title;
 				margin-block-end: 15px;
 				font-weight: 600;
+				text-wrap: balance;
+			}
+
+			&__text {
+				font-size: 14px;
 			}
 
 			&__sale {
@@ -126,11 +139,10 @@ const props = defineProps({
 				margin-block-end: 28px;
 				font-family: 'Causten';
 				font-weight: 700;
+				color: white;
 			}
 
-			.arrow {
-				margin-inline-start: 15%;
-			}
+
 		}
 
 
