@@ -6,7 +6,7 @@ import { ref } from 'vue'
 
 const store = productCard()
 
-const stockCard = ref(store.stockCard)
+const discountCard = ref(store.discountCard)
 
 </script>
 <template>
@@ -18,8 +18,9 @@ const stockCard = ref(store.stockCard)
 			<h2 class="stock-content__title">Big Saving Zone</h2>
 		</div>
 		<section class="stock-container">
-			<StockCard v-for='card in stockCard' :img='card.image' :title='card.title' :text='card.text'
-				:sale='card.sale' :limited-stock='card.limitedStock' :discount='card.dayDiscount = true' />
+			<StockCard v-for='card in discountCard' :img='card.image' :title='card.title' :text='card.text'
+				:sale='card.sale' :limited-stock='card.limitedStock' :discount='card.dayDiscount' :color='card.color'
+				:direction='card.direction' />
 		</section>
 	</main>
 
