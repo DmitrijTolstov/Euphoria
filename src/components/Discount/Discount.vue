@@ -1,5 +1,5 @@
 <script setup>
-import { productCard } from '../stores/ProductCard';
+import { productCard } from '../../stores/ProductCard';
 import StockCard from './DiscountCard.vue';
 
 import { ref } from 'vue'

@@ -1,5 +1,5 @@
 <script setup>
-import { stock } from '../stores/stock';
+import { stock } from '../../stores/stock';
 import StockCard from './DiscountCard.vue';
 
 const store = stock()
