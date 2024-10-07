@@ -51,7 +51,7 @@ const props = defineProps({
 		}
 
 		&__name {
-			font-size: $card-name;
+			font-size: $productCardName;
 			color: $gray;
 		}
 

@@ -28,7 +28,7 @@ const store = slider()
 				<div @click='store.nextBg()' class="slider-arrow_right arrow"></div>
 			</div>
 			<div class="dotts">
-				<div class="dott_left dott "></div>
+				<div class="dott_left dott active "></div>
 				<div class="dott_right dott"></div>
 			</div>
 
@@ -42,7 +42,7 @@ const store = slider()
 	margin-block-end: 200px;
 
 	&_btn {
-		@include button(false, false, black)
+		@include button(false, white, black)
 	}
 
 	&-content {
@@ -120,7 +120,12 @@ const store = slider()
 			width: 60px;
 			background-color: white;
 			height: 10px;
+			opacity: .6;
+			cursor: pointer;
 
+			&.active {
+				opacity: 1;
+			}
 
 
 			&_left {
