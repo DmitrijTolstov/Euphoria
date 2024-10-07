@@ -2,6 +2,7 @@
 
 
 import { ref } from 'vue'
+import Estimation from './Estimation.vue';
 
 const props = defineProps({
 	comment: String,
@@ -17,11 +18,7 @@ const props = defineProps({
 		<div class="card-content">
 			<img :src="props.images" alt="">
 			<div class="card-content_rating">
-				<svg v-for="item in props.star" width="20" height="19" viewBox="0 0 20 19" fill="#EDD146">
-					<path
-						d="M19.7476 7.12325L12.7991 6.52407L10.0835 0.126465L7.36789 6.53374L0.419434 7.12325L5.69601 11.6943L4.11111 18.4882L10.0835 14.8835L16.0559 18.4882L14.4806 11.6943L19.7476 7.12325ZM10.0835 13.0763L6.44981 15.2701L7.41621 11.1338L4.20775 8.35058L8.44061 7.98335L10.0835 4.08873L11.7361 7.99301L15.9689 8.36025L12.7604 11.1435L13.7268 15.2797L10.0835 13.0763Z"
-						fill="#EDD146" />
-				</svg>
+				<Estimation :star='props.star' />
 			</div>
 			<h5 class="card-content_name">{{ props.name }}</h5>
 			<p class="card-content_comment">{{ props.comment }}</p>
@@ -36,9 +33,10 @@ const props = defineProps({
 	padding-block: 23px;
 	min-width: 396px;
 	transition: box-shadow .2s linear;
+	cursor: pointer;
 
 	&:hover {
-		box-shadow: 4px -14px 30px 12px rgba(34, 60, 80, 0.13)
+		box-shadow: 3px -2px 12px 2px rgba(34, 60, 80, 0.13);
 	}
 
 
@@ -61,9 +59,7 @@ const props = defineProps({
 			justify-content: end;
 			align-items: start;
 
-			svg {
-				fill: #EDD146;
-			}
+
 
 		}
 
