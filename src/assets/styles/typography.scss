@@ -17,8 +17,6 @@ input:not([type="search"]) {
     border-radius: 8px;
     padding-inline: 8px;
     padding-block: 8px;
-    margin-block-start: 10px;
-    margin-block-end: 4px;
     transition: all .2s linear;
 
     &:focus-visible {
