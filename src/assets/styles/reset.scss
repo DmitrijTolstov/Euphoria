@@ -75,6 +75,12 @@ select {
     background-color: transparent;
 }
 
+textarea {
+    &:focus-visible {
+        outline: none;
+    }
+}
+
 input::-ms-clear {
     display: none;
 }
