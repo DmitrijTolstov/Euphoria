@@ -9,7 +9,10 @@ import Wishlistcard from './Wishlistcard.vue';
 		<h2 class="wishList__title">Wishlist</h2>
 		<div class="wishList-product">
 			<Wishlistcard />
+			<Wishlistcard />
+			<Wishlistcard />
 		</div>
+
 	</section>
 </template>
 
@@ -23,8 +26,8 @@ import Wishlistcard from './Wishlistcard.vue';
 
 	&-product {
 		display: flex;
+		flex-direction: column;
 		gap: 40px;
-		align-items: center;
 		margin-block: 50px 100px;
 	}
 }

@@ -70,6 +70,7 @@
 		display: flex;
 		justify-content: space-between;
 		gap: 90px;
+		margin-block-end: 100px;
 	}
 
 	&_links {

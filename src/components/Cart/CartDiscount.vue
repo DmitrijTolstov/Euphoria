@@ -37,6 +37,7 @@ import Button from '../button.vue';
 .discountCart {
 	display: flex;
 	justify-content: space-between;
+	margin-block-start: 100px;
 	position: relative;
 
 	&::before {
