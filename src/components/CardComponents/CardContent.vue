@@ -1,12 +1,17 @@
 <script setup>
+import ColorPicker from '../ColorPicker.vue';
 import Estimation from '../Estimation.vue';
-
+import SizePicker from '../SizePicker.vue'
 import Button from '@/components/Button.vue'
+import CardSlider from './CardSlider.vue';
+
 </script>
 <template>
 
 	<section class="card">
-		<div class="card-slider"></div>
+		<div class="card-slider">
+			<CardSlider />
+		</div>
 		<div class="card_image">
 			<img src="@/assets/images/productCard/image-1.png" alt="">
 		</div>
@@ -31,13 +36,25 @@ import Button from '@/components/Button.vue'
 					<p>Select Size</p>
 					<p>Size Guide</p>
 				</div>
-				<div class="card-size_select"></div>
+				<div class="card-size_select">
+					<SizePicker />
+				</div>
 			</div>
 			<div class="card-color">
 				<p class="card-color__text">Colours Available </p>
-				<div class="card-color_select"></div>
+				<div class="card-color_select">
+					<ColorPicker />
+				</div>
 			</div>
 			<div class="card_btns">
+				<div class="basket">
+					<svg width="15" height="15" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path
+							d="M1.5 1.33334H2.00526C2.85578 1.33334 3.56986 1.97376 3.6621 2.81926L4.3379 9.01409C4.43014 9.85959 5.14422 10.5 5.99474 10.5H13.205C13.9669 10.5 14.6317 9.98341 14.82 9.24519L15.9699 4.73593C16.2387 3.68213 15.4425 2.65742 14.355 2.65742H4.5M4.52063 13.5208H5.14563M4.52063 14.1458H5.14563M13.6873 13.5208H14.3123M13.6873 14.1458H14.3123M5.66667 13.8333C5.66667 14.2936 5.29357 14.6667 4.83333 14.6667C4.3731 14.6667 4 14.2936 4 13.8333C4 13.3731 4.3731 13 4.83333 13C5.29357 13 5.66667 13.3731 5.66667 13.8333ZM14.8333 13.8333C14.8333 14.2936 14.4602 14.6667 14 14.6667C13.5398 14.6667 13.1667 14.2936 13.1667 13.8333C13.1667 13.3731 13.5398 13 14 13C14.4602 13 14.8333 13.3731 14.8333 13.8333Z"
+							stroke="#fffE" stroke-width="1.5" stroke-linecap="round" />
+					</svg>
+
+				</div>
 				<Button class='addCart' :title='"Add to cart"' />
 				<Button :title='"$63.00"' />
 			</div>
@@ -75,10 +92,26 @@ import Button from '@/components/Button.vue'
 <style scoped lang='scss'>
 .card {
 	display: flex;
-	gap: 74px;
+	gap: 32px;
+
+	&-slider {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+	}
+
+	&_image {
+		width: calc(100% / 3);
+
+		img {
+			width: 100%;
+		}
+	}
 
 	&-content {
-
+		margin-left: 42px;
 
 		&_breadCrumbs {}
 
@@ -124,17 +157,27 @@ import Button from '@/components/Button.vue'
 
 		&_select {
 			display: flex;
-			align-items: center;
-			gap: 24px;
+			gap: 20px;
+			width: 290px;
+			overflow: hidden;
 		}
 	}
 
 
 
 	&-color {
-		&__text {}
+		&__text {
+			font-size: 18px;
+			font-weight: 600;
+		}
 
-		&_select {}
+		&_select {
+			display: flex;
+			gap: 8px;
+			margin-block-start: 25px;
+			width: 156px;
+			overflow: hidden;
+		}
 	}
 
 
@@ -142,17 +185,25 @@ import Button from '@/components/Button.vue'
 	&_btns {
 		display: flex;
 		gap: 25px;
+		position: relative;
+		margin-block-start: 50px;
 
 		button {
 			@include button(true, false, black)
+		}
+
+		.basket {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 30px;
+			width: 15px;
+			height: 15px;
 		}
 	}
 
 	.addCart {
 		@include button(false, true, white);
-		background-image: url(@/assets/images/icons/basket.svg);
-		background-repeat: no-repeat;
-		background-position: 25px;
 		font-size: 18px;
 		width: 199px;
 
@@ -183,7 +234,6 @@ import Button from '@/components/Button.vue'
 			}
 		}
 
-		&_item__text {}
 	}
 
 
