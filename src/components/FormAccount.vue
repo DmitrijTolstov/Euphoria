@@ -3,7 +3,8 @@ import { ref, reactive } from 'vue'
 import Button from './button.vue';
 
 let newAddress = ref(false)
-
+let contactDetails = ref(false)
+let billingDetails = ref(true)
 
 let input = reactive({
 	inputName: {
@@ -32,101 +33,163 @@ let change = (event) => {
 <template>
 
 	<form class='form'>
-		<div v-if='newAddress' class="form-info">
-			<div class="form-details">
-				<div class="form-details__input form_input">
-					<label for="name">Your Name</label>
-					<input v-model='input.inputName.value' v-if='input.inputName.active' id='name' type="text">
-					<p v-else class='form-details__input__text'>{{ input.inputName.value }}</p>
+		<template v-if='contactDetails'>
+			<div class="form-info">
+				<div class="form-details">
+					<div class="form-details__input form_input">
+						<label for="name">Your Name</label>
+						<input v-model='input.inputName.value' v-if='input.inputName.active' id='name' type="text">
+						<p v-else class='form-details__input__text'>{{ input.inputName.value }}</p>
+					</div>
+					<button data-name="inputName" @click.prevent='change' class='form-details__btn'>Change</button>
 				</div>
-				<button data-name="inputName" @click.prevent='change' class='form-details__btn'>Change</button>
-			</div>
-			<div class="form-details">
-				<div class="form-details__input form_input">
-					<label for="email">Email Address</label>
-					<input v-model='input.inputEmail.value' v-if='input.inputEmail.active' id='email' type="text">
-					<p v-else class='form-details__input__text'>{{ input.inputEmail.value }}</p>
+				<div class="form-details">
+					<div class="form-details__input form_input">
+						<label for="email">Email Address</label>
+						<input v-model='input.inputEmail.value' v-if='input.inputEmail.active' id='email' type="text">
+						<p v-else class='form-details__input__text'>{{ input.inputEmail.value }}</p>
+					</div>
+					<button data-name='inputEmail' @click.prevent='change' class='form-details__btn'>Change</button>
 				</div>
-				<button data-name='inputEmail' @click.prevent='change' class='form-details__btn'>Change</button>
-			</div>
-			<div class="form-details">
-				<div class="form-details__input form_input">
-					<label for="phone">Phone Number</label>
-					<input v-model='input.inputNum.value' v-if='input.inputNum.active' id='phone' type="text">
-					<p v-else class='form-details__input__text'>{{ input.inputNum.value }}</p>
+				<div class="form-details">
+					<div class="form-details__input form_input">
+						<label for="phone">Phone Number</label>
+						<input v-model='input.inputNum.value' v-if='input.inputNum.active' id='phone' type="text">
+						<p v-else class='form-details__input__text'>{{ input.inputNum.value }}</p>
+					</div>
+					<button data-name='inputNum' @click.prevent='change' class='form-details__btn'>Change</button>
 				</div>
-				<button data-name='inputNum' @click.prevent='change' class='form-details__btn'>Change</button>
-			</div>
-			<div class="form-details">
-				<div class="form-details__input form_input">
-					<label for="password">Password</label>
-					<input v-model='input.inputPass.value' v-if='input.inputPass.active' id='password' type="password">
-					<p v-else class='form-details__input__text'>{{ input.inputPass.value }}</p>
+				<div class="form-details">
+					<div class="form-details__input form_input">
+						<label for="password">Password</label>
+						<input v-model='input.inputPass.value' v-if='input.inputPass.active' id='password'
+							type="password">
+						<p v-else class='form-details__input__text'>{{ input.inputPass.value }}</p>
+					</div>
+					<button data-name='inputPass' @click.prevent='change' class='form-details__btn'>Change</button>
 				</div>
-				<button data-name='inputPass' @click.prevent='change' class='form-details__btn'>Change</button>
 			</div>
-		</div>
 
-		<div v-else class="form-newAddress">
-			<div class="form_input  form_input__newAddress">
-				<label for="firstName">First Name*</label>
-				<input id='firstName' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="lastName">last Name*</label>
-				<input id='lastName' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="country">Country / Region*</label>
-				<input id='country' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="company">Company Name</label>
-				<input id='company' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="address">Street Address*</label>
-				<input id='address' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="unit">Apt, suite, unit</label>
-				<input id='unit' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="city">City*</label>
-				<input id='city' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="state">State*</label>
-				<input id='state' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="phone">Phone*</label>
-				<input id='phone' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<label for="code">Postal Code*</label>
-				<input id='code' type="text">
-			</div>
-			<div class="form_input  form_input__newAddress_area">
-				<label for="instruction">Delivery Instruction</label>
-				<textarea name="instruction" id="instruction" placeholder='Delivery Instruction'></textarea>
-			</div>
-			<div class="form_input  form_input__newAddress">
-				<div class="form_input-checkbox">
-					<input type="checkbox" name="" id="shipping">
-					<label for="shipping">Set as default shipping address</label>
+			<template v-if='newAddress'>
+				<div class="form-newAddress">
+					<div class="form_input  form_input__newAddress">
+						<label for="firstName">First Name*</label>
+						<input id='firstName' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="lastName">last Name*</label>
+						<input id='lastName' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="country">Country / Region*</label>
+						<input id='country' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="company">Company Name</label>
+						<input id='company' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="address">Street Address*</label>
+						<input id='address' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="unit">Apt, suite, unit</label>
+						<input id='unit' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="city">City*</label>
+						<input id='city' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="state">State*</label>
+						<input id='state' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="phone">Phone*</label>
+						<input id='phone' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<label for="code">Postal Code*</label>
+						<input id='code' type="text">
+					</div>
+					<div class="form_input  form_input__newAddress_area">
+						<label for="instruction">Delivery Instruction</label>
+						<textarea name="instruction" id="instruction" placeholder='Delivery Instruction'></textarea>
+					</div>
+					<div class="form_input  form_input__newAddress">
+						<div class="form_input-checkbox">
+							<input type="checkbox" name="" id="shipping">
+							<label for="shipping">Set as default shipping address</label>
+						</div>
+						<div class="form_input-checkbox">
+							<input type="checkbox" name="" id="billing">
+							<label for="billing">Set as default billing address</label>
+						</div>
+					</div>
+					<div class="form-newAddress_btns">
+						<Button class='form-newAddress_btn__save' :title='"Save"'></Button>
+						<Button class='form-newAddress_btn__cancel' :title='"Cancel"'></Button>
+					</div>
 				</div>
-				<div class="form_input-checkbox">
-					<input type="checkbox" name="" id="billing">
-					<label for="billing">Set as default billing address</label>
+			</template>
+
+			<template v-if='billingDetails'>
+				<div class="form-billingDetails">
+					<div class="form_input  form_input__billingDetails">
+						<label for="firstName">First Name*</label>
+						<input id='firstName' type="text">
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<label for="lastName">last Name*</label>
+						<input id='lastName' type="text">
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<label for="country">Country / Region*</label>
+						<input id='country' type="text">
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<label for="company">Company Name</label>
+						<input id='company' type="text">
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<label for="address">Street Address*</label>
+						<input id='address' type="text">
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<label for="unit">Apt, suite, unit</label>
+						<input id='unit' type="text">
+					</div>
+					<div class="form-billingDetails-box">
+						<div class="form_input  form_input__billingDetails">
+							<label for="city">City*</label>
+							<input id='city' type="text">
+						</div>
+						<div class="form_input  form_input__billingDetails">
+							<label for="state">State*</label>
+							<input id='state' type="text">
+						</div>
+
+						<div class="form_input  form_input__billingDetails">
+							<label for="code">Postal Code*</label>
+							<input id='code' type="text">
+						</div>
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<label for="phone">Phone*</label>
+						<input id='phone' type="text">
+					</div>
+					<div class="form-newAddress_btns">
+						<Button class='form-billingDetails_btn__save' :title='"Continue to delivery"'></Button>
+					</div>
+					<div class="form_input  form_input__billingDetails">
+						<div class="form_input-checkbox">
+							<input type="checkbox" name="" id="billing">
+							<label for="billing">Save my information for a faster checkout</label>
+						</div>
+					</div>
+
 				</div>
-			</div>
-			<div class="form-newAddress_btns">
-				<Button class='form-newAddress_btn__save' :title='"Save"'></Button>
-				<Button class='form-newAddress_btn__cancel' :title='"Cancel"'></Button>
-			</div>
-		</div>
+			</template>
 	</form>
 
 </template>
@@ -138,7 +201,8 @@ let change = (event) => {
 	gap: 40px;
 	width: 100%;
 
-	&-newAddress {
+	&-newAddress,
+	&-billingDetails {
 		display: flex;
 		gap: 42px;
 		flex-wrap: wrap;
@@ -161,6 +225,13 @@ let change = (event) => {
 			}
 		}
 
+		&-box {
+			display: flex;
+			gap: 32px;
+			width: 100%;
+
+		}
+
 	}
 
 	&_input {
@@ -169,7 +240,8 @@ let change = (event) => {
 		min-height: 70px;
 		width: 100%;
 
-		&__newAddress {
+		&__newAddress,
+		&__billingDetails {
 			flex-basis: 46%;
 
 			label {
