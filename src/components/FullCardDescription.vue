@@ -14,7 +14,18 @@ import ProductCard from './ProductCard.vue';
 			<div class=""></div>
 			<h1 class='similarProducts__title'>Recently Viewed</h1>
 		</div>
-		<div class="similarProducts-container"></div>
+		<div class="similarProducts-container">
+			<ProductCard :name='"zczxc"' :brand='"qwerty"' :price='24'
+				:images='"src/assets/images/productCard/image-1.png"' />
+			<ProductCard :name='"zczxc"' :brand='"qwerty"' :price='24'
+				:images='"src/assets/images/productCard/image-1.png"' />
+			<ProductCard :name='"zczxc"' :brand='"qwerty"' :price='24'
+				:images='"src/assets/images/productCard/image-1.png"' />
+			<ProductCard :name='"zczxc"' :brand='"qwerty"' :price='24'
+				:images='"src/assets/images/productCard/image-1.png"' />
+			<ProductCard :name='"zczxc"' :brand='"qwerty"' :price='24'
+				:images='"src/assets/images/productCard/image-1.png"' />
+		</div>
 	</div>
 </template>
 <style scoped lang='scss'>
