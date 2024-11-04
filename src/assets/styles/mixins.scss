@@ -51,11 +51,13 @@
 }
 
 @mixin purple-candle {
+  position: absolute;
+  content: '';
   width: 6px;
-  background-color: $purple;
+  background-color: $purple ;
   border-radius: 10px;
-  height: 30px;
-  margin-inline-end: 20px;
+  height: 100%;
+  left: -15px;
 }
 
 @mixin arrow($color, $size, $border-width) {
