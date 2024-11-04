@@ -14,44 +14,32 @@ const cards = ref(store.productCard)
 </script>
 <template>
 
-	<section class="limeLight">
-		<div class="limeLight-content">
-			<div class="candle"></div>
-			<h2 class="limeLight-content__title">
-				In The Limelight
-			</h2>
-		</div>
-		<div class='limeLight-cards'>
-			<ProductCard v-for='card in cards' :key='card' :images='card.images' :name='card.name' :brand='card.brand'
-				:price='card.price' />
-		</div>
-	</section>
+	<div class='cards'>
+		<ProductCard v-for='card in cards' :key='card' :images='card.images' :name='card.name' :brand='card.brand'
+			:price='card.price' />
+	</div>
 
 
 
 </template>
 <style scoped lang='scss'>
-.limeLight {
+.cards {
 	margin-block-end: 100px;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin-block-end: 70px;
+	gap: 24px;
 
-	&-content {
-		display: flex;
-		align-items: center;
-		margin-block-end: 70px;
 
-		&__title {
-			font-size: $title;
-		}
-
-		.candle {
-			@include purple-candle
-		}
+	&__title {
+		font-size: $title;
 	}
 
-	&-cards {
-		display: flex;
-		gap: 36px;
+	.candle {
+		@include purple-candle
 	}
+
 
 
 }
