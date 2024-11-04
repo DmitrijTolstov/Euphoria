@@ -2,12 +2,17 @@
 
 let sizeArr = ['XXS', 'XL', 'XS', 'S', 'M', 'L', 'XXL', '3XL', '4XL']
 
+import { computed } from 'vue';
+
+let width = computed(() => {
+	return true ? '61px' : '30px'
+})
 
 </script>
 <template>
 	<div class="sizePicker" v-for='item in sizeArr'>
 
-		<div class="sizePicker-size">{{ item }} </div>
+		<div :style='{ width: width }' class="sizePicker-size">{{ item }} </div>
 
 	</div>
 </template>
@@ -16,7 +21,7 @@ let sizeArr = ['XXS', 'XL', 'XS', 'S', 'M', 'L', 'XXL', '3XL', '4XL']
 	text-align: center;
 
 	&-size {
-		width: 30px;
+		// width: 30px;
 		height: 30px;
 		border: 1px solid $border-feedback;
 		border-radius: 8px;
