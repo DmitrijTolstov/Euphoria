@@ -1,16 +1,18 @@
 <script setup>
 import Footer from '../components/Footer.vue';
-import FullCardDescription from '../components/FullCardDescription.vue';
 import Header from '../components/Header.vue';
+import SectionGenderClothing from '../components/section/SectionGenderClothing.vue';
 
 
 
 </script>
 <template>
 	<Header />
-	<div class="container">
-		<FullCardDescription />
-	</div>
+	<section class="womanClothing">
+		<div class="container">
+			<SectionGenderClothing />
+		</div>
+	</section>
 	<Footer />
 
 </template>
