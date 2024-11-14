@@ -7,11 +7,11 @@
 		<header class='header'>
 			<img class='header_logo' src="@/assets/images/logo/logo.svg" alt="">
 			<nav class="header-nav">
-				<a>Shop</a>
-				<a>Men</a>
-				<a>Women</a>
-				<a>Combos</a>
-				<a>Joggers</a>
+				<RouterLink to='/shop'>Shop</RouterLink>
+				<RouterLink to='/menCategory'>Men</RouterLink>
+				<RouterLink to='/womenCategory'>Women</RouterLink>
+				<RouterLink to=''>Combos</RouterLink>
+				<RouterLink to=''>Joggers</RouterLink>
 			</nav>
 			<input class='header_search' type="text" placeholder='Search'>
 			<div class="header-links">

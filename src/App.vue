@@ -1,12 +1,9 @@
 <script setup lang="ts">
-import Sign from '@/layouts/Sign.vue';
-
-
 
 </script>
 
 <template>
-    <Sign />
+    <router-view></router-view>
 </template>
 
 <style scoped></style>

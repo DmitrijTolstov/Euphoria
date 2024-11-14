@@ -6,14 +6,6 @@ import { auth } from '../stores/auth';
 
 const store = auth()
 
-const resetPassword = (() => {
-    store.resetPassword()
-})
-
-const newPassword = (() => {
-    store.newPassword()
-})
-
 
 
 const sign = computed(() => {
@@ -28,6 +20,7 @@ const sign = computed(() => {
 
 <template>
     <form action="" class='form'>
+
         <div class="form-email form-container" v-for="({ email }, index) in sign" :key="index">
             <label for="email">{{ email }}</label>
             <input id='email' type="email">
@@ -42,29 +35,35 @@ const sign = computed(() => {
             <input id='password' type="email">
             <p class="error">error password</p>
         </div>
+
         <div class="form-password_link" :class='{ " store.sign": !store.login, "signUp": store.login }'>
-            <span @click='resetPassword()' v-if='store.login'>Forget your password?</span>
+            <span v-if='store.login' @click='store.showComponents("resetPass")'>Forget your password?</span>
             <span v-else> Use 8 or more characters with a mix of letters, numbers &
                 symbols</span>
         </div>
-        <div class="form-checkbox" v-if="!store.login">
-            <div class="form-checkbox-container">
-                <input type="checkbox" name="" id="agree">
-                <label for="agree">Agree to our Terms of use and Privacy Policy </label>
+        <Button @click='this.$router.push("/shop")' v-if="store.login" class='form_btn' :title='"Sign In"' />
+
+        <template v-if='!store.login'>
+            <div class="form-checkbox">
+                <div class="form-checkbox-container">
+                    <input type="checkbox" name="" id="agree">
+                    <label for="agree">Agree to our Terms of use and Privacy Policy </label>
+                </div>
+                <div class="form-checkbox-container">
+                    <input type="checkbox" name="" id="Subscribe">
+                    <label for="Subscribe">Subscribe to our monthly newsletter</label>
+                </div>
+
             </div>
-            <div class="form-checkbox-container">
-                <input type="checkbox" name="" id="Subscribe">
-                <label for="Subscribe">Subscribe to our monthly newsletter</label>
-            </div>
-        </div>
-        <Button v-if="store.login" class='form_btn' :title='"Sign In"' />
-        <Button @click='newPassword()' v-else class=' form_btn' :title='"Sign Up"' />
+            <Button class=' form_btn' :title='"Sign Up"' />
+
+        </template>
     </form>
     <div class="link-account" v-if="store.login">
-        Don’t have an account? <a @click='newPassword()'>Sign up</a>
+        Don’t have an account? <a @click='store.showComponents("signUp"), store.login = false'> Sign up </a>
     </div>
-    <div class="link-account" v-else>
-        Sign up Already have an account? <a href="">Log in</a>
+    <div div class="link-account" v-else>
+        Sign up Already have an account ? <a @click=' store.showComponents("signIn"), store.login = true'>Log in</a>
     </div>
 </template>
 

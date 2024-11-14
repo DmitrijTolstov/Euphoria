@@ -1,4 +1,6 @@
 <script setup>
+import router from '../router/routes';
+import { productCard } from '../stores/ProductCard';
 
 const props = defineProps({
 	name: String,
@@ -7,10 +9,13 @@ const props = defineProps({
 	images: String
 
 })
+let openDescription = () => {
+	router.push('/fullDescription')
+}
 
 </script>
 <template>
-	<div class="productCard">
+	<div @click='openDescription()' class="productCard">
 		<img :src="props.images" alt="">
 		<div class="productCard-content">
 			<div class="productCard-content__description">
