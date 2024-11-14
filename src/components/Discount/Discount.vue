@@ -13,10 +13,7 @@ const discountCard = ref(store.discountCard)
 
 
 	<main class="stock">
-		<div class="stock-content">
-			<div class="candle"></div>
-			<h2 class="stock-content__title">Big Saving Zone</h2>
-		</div>
+		<h2 class="stock-content__title">Big Saving Zone</h2>
 		<section class="stock-container">
 			<StockCard v-for='card in discountCard' :img='card.image' :title='card.title' :text='card.text'
 				:sale='card.sale' :limited-stock='card.limitedStock' :discount='card.dayDiscount' :color='card.color'
@@ -35,13 +32,11 @@ const discountCard = ref(store.discountCard)
 		align-items: center;
 		margin-block-start: 70px;
 
-		.candle {
-			@include purple-candle
-		}
 
 		&__title {
 			font-size: $sup-title;
 			font-weight: 800;
+			@include purple-candle
 		}
 	}
 

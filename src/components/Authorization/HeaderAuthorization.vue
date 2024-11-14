@@ -1,7 +1,7 @@
 <script setup>
-import Button from './button.vue';
+import Button from '@/components/button.vue';
 
-import { auth } from '../../stores/auth';
+import { auth } from '@/stores/auth';
 
 const store = auth()
 

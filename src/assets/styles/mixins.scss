@@ -23,6 +23,13 @@
     background-color: $purple;
   }
 
+  &:hover {
+    @if $bg ==false {
+      background-color: $purple;
+      color: white;
+    }
+  }
+
 }
 
 
@@ -51,13 +58,18 @@
 }
 
 @mixin purple-candle {
-  position: absolute;
-  content: '';
-  width: 6px;
-  background-color: $purple ;
-  border-radius: 10px;
-  height: 100%;
-  left: -15px;
+  position: relative;
+  margin-inline-start: 15px;
+
+  &:before {
+    position: absolute;
+    content: '';
+    width: 6px;
+    background-color: $purple ;
+    border-radius: 10px;
+    height: 100%;
+    left: -15px;
+  }
 }
 
 @mixin arrow($color, $size, $border-width) {

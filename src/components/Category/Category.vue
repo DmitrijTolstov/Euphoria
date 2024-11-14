@@ -16,10 +16,7 @@ const cards = ref(props.cards)
 <template>
 
 	<main class="category">
-		<div class="category-content">
-			<div class="candle"></div>
-			<h2 class="category-content__title">Categories For {{ title }}</h2>
-		</div>
+		<h2 class="category-content__title">Categories For {{ title }}</h2>
 		<section class="category-cards">
 			<LinkCard v-for='card in cards' :key='card' :image='card.image' :title='card.content.title'
 				:name='card.content.name' />
@@ -40,11 +37,9 @@ const cards = ref(props.cards)
 		&__title {
 			font-size: $sup-title;
 			font-weight: 600;
-		}
-
-		.candle {
 			@include purple-candle
 		}
+
 	}
 
 

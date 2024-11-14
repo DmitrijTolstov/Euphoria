@@ -15,12 +15,9 @@ const cards = ref(store.linkCard)
 <template>
 
 	<main class="arrival">
-		<div class="arrival-content">
-			<div class="candle"></div>
-			<h2 class="arrival-content__title">
-				New Arrival
-			</h2>
-		</div>
+		<h2 class="arrival-content__title">
+			New Arrival
+		</h2>
 
 		<div class="arrival-container_cards">
 			<linkCard class='arrival-container_card' v-for='card in cards' :key='card' :image='card.image'
@@ -61,13 +58,13 @@ const cards = ref(store.linkCard)
 		&__title {
 			font-size: $sup-title;
 			font-weight: 600;
+			@include purple-candle
 		}
 	}
 
 	&-container {
 
 		&_cards {
-			margin-block: 70px 95px;
 			display: flex;
 			gap: 40px;
 			align-items: center;
@@ -82,8 +79,8 @@ const cards = ref(store.linkCard)
 
 	.arrow {
 		position: absolute;
-		top: 60%;
-		transform: translateY(-60%);
+		top: 50%;
+		transform: translateY(-50%);
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
