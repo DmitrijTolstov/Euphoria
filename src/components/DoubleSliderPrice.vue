@@ -2,18 +2,19 @@
 import { ref, onMounted } from 'vue';
 
 import noUiSlider from 'nouislider';
+import { slider } from '../stores/slider';
 
-const slider = ref(null)
+const store = slider()
 
-let minValue = ref(0)
-let maxValue = ref(0)
+const doubleSlider = ref(null)
+
 
 onMounted(() => {
 
-	if (slider.value) {
+	if (doubleSlider.value) {
 
-		noUiSlider.create(slider.value, {
-			start: [150, 450],
+		noUiSlider.create(doubleSlider.value, {
+			start: [store.minValue, store.maxValue],
 			connect: true,
 			range: {
 				'min': 0,
@@ -21,8 +22,8 @@ onMounted(() => {
 			},
 		})
 
-		slider.value.noUiSlider.on('update', (values, handle) => {
-			[minValue.value, maxValue.value] = values.map(num => Math.floor(num))
+		doubleSlider.value.noUiSlider.on('update', (values, handle) => {
+			store.sliderValue(values.map(num => Math.floor(num)))
 		})
 
 	}
@@ -31,7 +32,7 @@ onMounted(() => {
 
 </script>
 <template>
-	<div ref='slider' class="custom-slider"></div>
+	<div ref='doubleSlider' class="custom-slider"></div>
 </template>
 
 <style lang='scss'>
@@ -56,6 +57,7 @@ onMounted(() => {
 		height: 16px;
 		background-color: $purple;
 		border-radius: 50%;
+		right: -10px;
 
 		&::before {
 			display: none;
