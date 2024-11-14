@@ -1,6 +1,11 @@
 <script setup>
 import ColorPicker from './ColorPicker.vue';
+import DoubleSliderPrice from './DoubleSliderPrice.vue';
 import SizePicker from './SizePicker.vue';
+
+import { slider } from '../stores/slider';
+
+const store = slider()
 
 </script>
 <template>
@@ -55,7 +60,14 @@ import SizePicker from './SizePicker.vue';
 			<div class="filter-settings">
 				<details>
 					<summary>Price</summary>
-					<div class="filter-price"></div>
+					<div class="filter-price">
+						<DoubleSliderPrice />
+						<div class="slider-inputs">
+							<input type="text" :value='store.minValue' name="" id="">
+							<input type="text" :value='store.maxValue' name="" id="">
+						</div>
+					</div>
+
 				</details>
 				<details>
 					<summary>Colors</summary>
@@ -120,6 +132,12 @@ import SizePicker from './SizePicker.vue';
 	}
 
 	&-settings {
+		margin-block-start: 60px;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		max-width: 232px;
+
 		&:not(:first-child) {
 			summary {
 				&:after {
@@ -134,6 +152,7 @@ import SizePicker from './SizePicker.vue';
 			}
 
 		}
+
 
 		details {
 			&[open] {
@@ -167,7 +186,7 @@ import SizePicker from './SizePicker.vue';
 	&-size {
 		display: flex;
 		flex-wrap: wrap;
-		margin-block: 50px;
+		margin-block-start: 50px;
 		gap: 20px;
 
 	}
@@ -175,8 +194,24 @@ import SizePicker from './SizePicker.vue';
 	&-colors {
 		display: flex;
 		flex-wrap: wrap;
-		margin-block: 50px;
+		margin-block-start: 50px;
 		gap: 20px;
+	}
+
+	&-price {
+		margin-block-start: 50px;
+
+	}
+
+	.slider-inputs {
+		display: flex;
+		gap: 30px;
+
+		input {
+			max-width: 97px;
+			text-align: center;		}
+
+
 	}
 
 }
