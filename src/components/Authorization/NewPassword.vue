@@ -1,6 +1,6 @@
 <script setup>
-import { auth } from '../../stores/auth';
-import Button from './button.vue';
+import { auth } from '@/stores/auth.ts';
+import Button from '../button.vue';
 
 
 import { ref, computed } from 'vue'

@@ -1,16 +1,9 @@
 <script setup>
-import { auth } from '../../stores/auth';
-import Button from './button.vue';
+import { auth } from '@/stores/auth.ts';
+import Button from '@/components/button.vue';
 
 const store = auth()
 
-const backToLogin = (() => {
-	store.backToLogin()
-})
-
-const checkEmail = (() => {
-	store.checkEmail()
-})
 
 </script>
 <template>
@@ -24,9 +17,9 @@ const checkEmail = (() => {
 			<input id='email' type="email">
 			<p class="error">We can not find your email.</p>
 		</div>
-		<Button @click='checkEmail()' class='resetPassword_btn' :title='"Send"' />
+		<Button @click='store.showComponents("checkEmail")' class='resetPassword_btn' :title='"Send"' />
 		<div class="form_backToLogin">
-			<p @click='backToLogin()'>Back to <a> Login</a></p>
+			<p>Back to <a @click='store.showComponents("signIn")'> Login</a></p>
 		</div>
 	</div>
 </template>

@@ -3,60 +3,48 @@ import { defineStore } from 'pinia';
 export const auth = defineStore('auth',{
 	state: () => ({ 
 
+		components:[
+			{
+				img:'src/assets/images/authorization/resetPassword.png',
+				component:'resetPass'
+			},
+			{
+				img:'src/assets/images/authorization/Verification.png',
+				component:'verif'
+			},
+			{
+				img:'src/assets/images/authorization/CheckEmail.png',
+				component:'checkEmail'
+			},
+			{
+				img:'src/assets/images/authorization/createPassword.png',
+				component:'newPass'
+			},
+			{
+				img:'src/assets/images/authorization/signIn.png',
+				component:'signIn'
+			},
+			{
+				img:'src/assets/images/authorization/signUp.png',
+				component:'signUp'
+			},
+
+		],
+
 		login:true,
-		image: 'src/assets/images/authorization/signIn.png',
-		resetPass : false,
-		checkedEmail: false,
-		sign:true,
-		newPass: false,
-		verif:false
+		component:{
+				img:'src/assets/images/authorization/signIn.png',
+				component:'signIn'
+			},
 
 	 }),
   	getters: {
+		
+		
   	},
   	actions: {
-
-		sighUp(){
-			this.image = 'src/assets/images/authorization/signUp.png',
-			this.login = false
+		showComponents(component:string){
+			this.component = this.components.find(data => data.component === component )
 		},
-
-		logIn(){
-			this.image = 'src/assets/images/authorization/signIn.png',
-			this.login = true
-		},
-
-		resetPassword(){
-			this.image = 'src/assets/images/authorization/resetPassword.png',
-			this.resetPass = true
-			
-		},
-		backToLogin(){
-			this.sign = true
-			this.checkedEmail = false,
-			this.resetPass = false
-			this.image = 'src/assets/images/authorization/signIn.png'
-		},
-		checkEmail(){
-			this.sign = false,
-			this.resetPass = false
-			this.checkedEmail = true
-			this.image = 'src/assets/images/authorization/checkEmail.png'
-		},
-
-		newPassword(){
-			this.newPass = true
-			this.login = false
-			this.sign = false
-			this.image = 'src/assets/images/authorization/createPassword.png'
-		},
-		verification(){
-			this.newPass = false
-			this.login = false
-			this.sign = false
-			this.verif = true
-			this.image = 'src/assets/images/authorization/verification.png'
-		}
-    
   },
 })

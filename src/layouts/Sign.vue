@@ -1,39 +1,33 @@
 <script setup>
-import HeaderAuthorization from '@/components/HeaderAuthorization.vue';
-import Authorization from '../components/Authorization.vue';
-import ResetPassword from '../components/ResetPassword.vue';
-import Verification from '../components/Verification.vue';
-import CheckEmail from '../components/CheckEmail.vue';
-import NewPassword from '../components/NewPassword.vue';
+import HeaderAuthorization from '@/components/Authorization/HeaderAuthorization.vue';
+import Authorization from '../components/Authorization/Authorization.vue';
+import ResetPassword from '../components/Authorization/ResetPassword.vue';
+import Verification from '../components/Authorization/Verification.vue';
+import CheckEmail from '../components/Authorization/CheckEmail.vue';
+import NewPassword from '../components/Authorization/NewPassword.vue';
 
-import { computed } from 'vue'
-
-import { auth } from '../stores/auth';
-
-
+import { computed } from 'vue';
 const store = auth()
 
-const layout = computed(() => {
-    if (store.resetPass) {
-        return ResetPassword
-    } else if (store.checkedEmail) {
-        return CheckEmail
-    } else if (store.sign) {
-        return Authorization
-    } else if (store.newPass) {
-        return NewPassword
-    } else if (store.verif) {
-        return Verification
-    }
+let components = {
+    'newPass': NewPassword,
+    'resetPass': ResetPassword,
+    'checkEmail': CheckEmail,
+    'verif': Verification,
+    'signIn': Authorization,
+    'signUp': Authorization,
+}
 
+let component = computed(() => {
+    return components[store.component.component]
 })
 
 </script>
 <template>
     <HeaderAuthorization />
     <div class="sign-container">
-        <img :src="store.image" alt="">
-        <component :is="layout"></component>
+        <img :src="store.component.img" alt="">
+        <component :is="component"></component>
     </div>
 </template>
 <style scoped lang='scss'>
@@ -42,8 +36,7 @@ const layout = computed(() => {
     gap: 80px;
 
     img {
-        max-height: 839px;
-        max-width: 610px;
-    }
-}
+        max-height: 853px;
+        max-width: 620px;
+    }}
 </style>
