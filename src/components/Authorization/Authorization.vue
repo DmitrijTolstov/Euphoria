@@ -1,6 +1,10 @@
 <script setup>
-import Button from './button.vue';
-import Form from './form.vue';
+import Button from '@/components/button.vue';
+import Form from '@/components/form.vue';
+import { auth } from '@/stores/auth';
+
+const store = auth()
+
 
 </script>
 
@@ -8,8 +12,13 @@ import Form from './form.vue';
 
     <div class="authorization">
         <div class="authorization-content">
-            <h2 class="authorization__title">Sign In Page</h2>
-            <p class="authorization__text">{{ text }}</p>
+            <h2 class="authorization__title" :style='{ marginBlockEnd: store.login ? "50px" : "10px" }'
+                v-if='store.login'>
+                Sign In Page</h2>
+            <template v-if='!store.login'>
+                <h2 class="authorization__title">Sign Up</h2>
+                <p class="authorization__text">Sign up for free to access to in any of our products </p>
+            </template>
             <div class="authorization-buttons">
                 <Button class='authorization__btn authorization__btn_google'
                     image='src/assets/images/socialLink/Google.svg' :title='"Continue With Google"' />
@@ -36,7 +45,6 @@ import Form from './form.vue';
 
     &__title {
         font-size: $title;
-        margin-block-end: 50px;
     }
 
     &__text {
@@ -57,10 +65,12 @@ import Form from './form.vue';
 
         &_twitter {
             background-image: url(@/assets/images/socialLink/twitter.svg);
+            background-position: 25%;
         }
 
         &_google {
             background-image: url(@/assets/images/socialLink/Google.svg);
+            background-position: 25%;
         }
     }
 
