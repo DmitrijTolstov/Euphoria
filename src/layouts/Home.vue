@@ -27,9 +27,23 @@ import Shop from '../components/Shop.vue';
 		<CategoryMen />
 		<CategoryWomen />
 		<Brands />
-		<ProductCards />
+		<div class="Limelight">
+			<h1 class='Limelight__title'>In The Limelight</h1>
+			<ProductCards />
+		</div>
 		<Feedback />
 	</div>
 	<Footer />
 </template>
-<style scoped lang='scss'></style>
+<style scoped lang='scss'>
+.Limelight {
+	&__title {
+		font-size: $sup-title;
+		font-weight: 600;
+		margin-block-end: 20px;
+		@include purple-candle
+	}
+
+
+}
+</style>
