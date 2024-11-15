@@ -1,7 +1,32 @@
 <script setup>
+import Address from '../components/Account/Address.vue';
 import MyInfo from '../components/Account/MyInfo.vue';
+import Orders from '../components/Account/Orders.vue';
+import OrdersDetails from '../components/Account/OrdersDetails.vue';
+import Wishlist from '../components/Account/Wishlist.vue';
+import EmptyWishlist from '../components/EmptyWishlist.vue';
 import Footer from '../components/Footer.vue';
 import Header from '../components/Header.vue';
+import ProductCard from '../components/ProductCard.vue';
+import { account } from '../stores/account';
+import EmptyCart from './EmptyCart.vue';
+import Error404 from './Error404.vue';
+import { reactive, ref, computed } from 'vue'
+let store = account()
+
+let components = {
+	'address': Address,
+	'wishlist': Wishlist,
+	'emptyWishlist': EmptyWishlist,
+	'orders': Orders,
+	'ordersDetails': OrdersDetails,
+	'myInfo': MyInfo
+}
+
+let showComponent = computed(() => {
+	return components[store.component]
+})
+
 
 
 </script>
@@ -9,7 +34,7 @@ import Header from '../components/Header.vue';
 	<Header />
 	<section class="account">
 		<div class="container">
-			<div class="account-container">
+			<div :style='{ marginBlockEnd: store.wishlist.length ? "50px" : "100px" }' class="account-container">
 				<div class="account-content">
 					<div class="candle">
 						<div class=""></div>
@@ -17,15 +42,15 @@ import Header from '../components/Header.vue';
 					</div>
 					<p class="account__text">Welcome to your Account</p>
 					<div class="account-links">
-						<div class="account-link">
+						<div @click='store.findComponent("orders")' class="account-link">
 							<img src="@/assets/images/icons/orders.svg" alt="">
 							My orders
 						</div>
-						<div class="account-link">
+						<div @click='store.findComponent("wishlist")' class="account-link">
 							<img src="@/assets/images/icons/heart.svg" alt="">
 							Wishlist
 						</div>
-						<div class="account-link">
+						<div @click='store.findComponent("myInfo")' class="account-link">
 							<img src="@/assets/images/icons/user.svg" alt="">
 							My info
 						</div>
@@ -35,7 +60,27 @@ import Header from '../components/Header.vue';
 						</div>
 					</div>
 				</div>
-				<MyInfo />
+				<div class="account-info">
+					<component :is='showComponent'></component>
+				</div>
+			</div>
+			<div v-if='store.wishlist.length' class="account-viewed">
+				<div class="candle">
+					<div class=""></div>
+					<h1 class='account-viewed__title'>Recently Viewed</h1>
+				</div>
+				<div class="account-viewed-container">
+					<ProductCard :images='"src/assets/images/productCard/image-1.png"' :name='"White T-Shirt"'
+						:brand='"Priya’s  Brand"' :price='13' />
+					<ProductCard :images='"src/assets/images/productCard/image-1.png"' :name='"White T-Shirt"'
+						:brand='"Priya’s  Brand"' :price='13' />
+					<ProductCard :images='"src/assets/images/productCard/image-1.png"' :name='"White T-Shirt"'
+						:brand='"Priya’s  Brand"' :price='13' />
+					<ProductCard :images='"src/assets/images/productCard/image-1.png"' :name='"White T-Shirt"'
+						:brand='"Priya’s  Brand"' :price='13' />
+					<ProductCard :images='"src/assets/images/productCard/image-1.png"' :name='"White T-Shirt"'
+						:brand='"Priya’s  Brand"' :price='13' />
+				</div>
 			</div>
 		</div>
 	</section>
@@ -43,6 +88,9 @@ import Header from '../components/Header.vue';
 </template>
 <style scoped lang='scss'>
 .account {
+	&-info {
+		width: 100%;
+	}
 
 	&-container {
 		display: flex;
@@ -79,6 +127,22 @@ import Header from '../components/Header.vue';
 			border-left: 2px solid $gray;
 			border-radius: 8px;
 
+		}
+	}
+
+	&-viewed {
+
+		margin-block-end: 100px;
+
+		&-container {
+			display: flex;
+			gap: 37px;
+			margin-block-start: 30px;
+			overflow: hidden;
+		}
+
+		&__title {
+			font-size: $title-footer;
 		}
 	}
 }
