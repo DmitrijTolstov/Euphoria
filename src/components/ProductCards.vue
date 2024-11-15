@@ -9,13 +9,16 @@ const store = productCard()
 const cards = ref(store.productCard)
 
 
+const props = defineProps({
+	cards: Array
+})
 
 
 </script>
 <template>
 
 	<div class='cards'>
-		<ProductCard v-for='card in cards' :key='card' :images='card.images' :name='card.name' :brand='card.brand'
+		<ProductCard v-for='card in props.cards' :key='card' :images='card.images' :name='card.name' :brand='card.brand'
 			:price='card.price' />
 	</div>
 

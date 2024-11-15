@@ -12,7 +12,9 @@ import Brands from '../components/Brands.vue';
 import ProductCards from '../components/ProductCards.vue';
 import Feedback from '../components/Feedback.vue';
 import Shop from '../components/Shop.vue';
+import { productCard } from '../stores/ProductCard';
 
+const store = productCard()
 
 
 </script>
@@ -29,7 +31,7 @@ import Shop from '../components/Shop.vue';
 		<Brands />
 		<div class="Limelight">
 			<h1 class='Limelight__title'>In The Limelight</h1>
-			<ProductCards />
+			<ProductCards :cards='store.productCard' />
 		</div>
 		<Feedback />
 	</div>

@@ -6,7 +6,7 @@ const props = defineProps({
 	name: String,
 	price: Number,
 	brand: String,
-	images: String
+	images: String,
 
 })
 let openDescription = () => {

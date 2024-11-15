@@ -3,6 +3,8 @@ import Filter from '../Filter.vue';
 import ProductCards from '../ProductCards.vue';
 import { useRoute } from 'vue-router';
 let route = useRoute()
+import { productCard } from '@/stores/ProductCard';
+const store = productCard()
 
 </script>
 <template>
@@ -14,7 +16,7 @@ let route = useRoute()
 
 			<div class="sectionClothing-container_cards">
 				<h2 class="sectionClothing-container_cards__title">{{ route.name }} Clothing</h2>
-				<ProductCards />
+				<ProductCards :cards='store.sectionCard' />
 
 			</div>
 		</div>
