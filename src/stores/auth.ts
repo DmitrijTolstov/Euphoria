@@ -1,9 +1,15 @@
 import { defineStore } from 'pinia';
+import { Ref,ref } from 'vue';
 
-export const auth = defineStore('auth',{
-	state: () => ({ 
+type TComponents = {
+	img:string,
+	component: string
+}
 
-		components:[
+
+export const auth = defineStore('auth',() => {
+
+		const components:Ref<TComponents[]> = ref([
 			{
 				img:'src/assets/images/authorization/resetPassword.png',
 				component:'resetPass'
@@ -29,22 +35,17 @@ export const auth = defineStore('auth',{
 				component:'signUp'
 			},
 
-		],
+		])
 
-		login:true,
-		component:{
+		let login = ref(true)
+		let componentLayout:Ref<TComponents> = ref({
 				img:'src/assets/images/authorization/signIn.png',
 				component:'signIn'
-			},
+			})
 
-	 }),
-  	getters: {
-		
-		
-  	},
-  	actions: {
-		showComponents(component:string){
-			this.component = this.components.find(data => data.component === component )
-		},
-  },
+		function showComponents(component:string){
+			componentLayout.value = components.value.find(data => data.component === component )!
+		}
+		return{showComponents,login,componentLayout}
 })
+export default auth

@@ -1,13 +1,38 @@
 import { defineStore } from 'pinia';
+import {ref, computed, Ref}from 'vue'
 
+interface IProductCard {
+		images:string,
+		id:number,
+		price:number
+		name:string,
+		brand:string,
+		category: string
+}
+interface IDiscountCard{
+	image: string,
+				title:string,
+				text:string,
+				sale:string,
+				link?:string,
+				limitedStock: boolean,
+				dayDiscount:boolean,
+				color:string,
+				direction: string
+}
+interface ILinkCard {
+		image:string,
+				content:{
+					title:string,
+					name?:string
+				},
+				category:string,
+				arrival: boolean
+			}
 
+export const productCard = defineStore('productCard',() =>{
 
-
-export const productCard = defineStore('productCard',{
-
-	state:()=>({
-
-		linkCard:[
+		const linkCard:Ref<ILinkCard[]> = ref([
 			{
 				image:'src/assets/images/arrival/image-1.png',
 				content:{
@@ -190,10 +215,9 @@ export const productCard = defineStore('productCard',{
 				arrival: false
 			},
 
+		]) ;
 
-		],
-
-		discountCard:[
+		const discountCard:Ref<IDiscountCard[]> = ref([
 			{
 				image: 'src/assets/images/stock/image-1.png',
 				title:'Hawaiian Shirts',
@@ -250,49 +274,92 @@ export const productCard = defineStore('productCard',{
 				direction: 'right'
 			}
 		],
-
-		productCard:[
+);
+		let productCard:Ref<IProductCard[] >= ref([
 			{
 				images:'src/assets/images/productCard/image-1.png',
+				id:1,
 				price:123,
-				name:'Black Sweatshirt with ....',
-				brand:'Jhanvi’s  Brand'
+				name:'Black Sweatshirt ',
+				brand:'Jhanvi’s  Brand',
+				category: 'women'
 			},
 			{
 				images:'src/assets/images/productCard/image-2.png',
+				id:2,
 				price:37,
-				name:'line Pattern Black H...',
-				brand:'AS’s  Brand'
+				name:'line Pattern Black ',
+				brand:'AS’s  Brand',
+				category: 'women'
 			},
 			{
 				images:'src/assets/images/productCard/image-3.png',
+				id:3,
 				price:37,
 				name:'Black Shorts',
-				brand:'MM’s  Brand'
+				brand:'MM’s  Brand',
+				category: 'women'
 			},
 			{
 				images:'src/assets/images/productCard/image-4.png',
+				id:4,
 				price:119.,
-				name:'Levender Hoodie with ...',
-				brand:'Nike’s  Brand'
+				name:'Levender Hoodie',
+				brand:'Nike’s  Brand',
+				category: 'women'
 			},
-		]
-		
-	}),
-	getters:{
+		]);
 
-		menCategory(state){
-			return state.linkCard.filter((card:{ category: string; arrival: boolean; })=> card.category === 'men' && card.arrival === false)
-		},
-		womenCategory(state){
-			return state.linkCard.filter((card: { category: string; arrival: boolean; }) => card.category === 'women' && card.arrival === false)
+		let sectionCards:Ref<IProductCard[]>= ref([]);
+		let fullCard:Ref<IProductCard> = ref({
+			images: '',
+			id: 0,
+			price: 0,
+			name: '',
+			brand: '',
+			category: ''
+		});
+		let cardOpen:boolean = true;
+		
+
+
+
+		const menCategory = computed(() =>{
+			return linkCard.value.filter((card:{ category: string; arrival: boolean; })=> card.category === 'men' && card.arrival === false)
+		});
+		const womenCategory = computed(() =>{
+			return linkCard.value.filter((card: { category: string; arrival: boolean; }) => card.category === 'women' && card.arrival === false)
+		},)
+		const sectionCard = computed(() => {
+			return sectionCards
+		});
+		
+		const showSection = (section:string) =>{
+			sectionCards.value = productCard.value.filter(card => card.category === section)
+			
+		};
+		function fullCardDescription  (id:number) {
+			fullCard.value =  productCard.value.find((card)=> card.id == id)as IProductCard;
+
+			
 		}
 		
-		
-	},
-	actions:{
-		
-	}
+
+		return {
+			productCard,
+			sectionCards,
+			linkCard,
+			discountCard,
+			fullCard,
+			cardOpen,
+			menCategory,
+			womenCategory
+			,sectionCard,
+			showSection
+			,fullCardDescription
+		}
 
 	
 })
+
+export default productCard
