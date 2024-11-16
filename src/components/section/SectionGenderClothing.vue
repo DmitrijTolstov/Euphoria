@@ -16,7 +16,7 @@ const store = productCard()
 
 			<div class="sectionClothing-container_cards">
 				<h2 class="sectionClothing-container_cards__title">{{ route.name }} Clothing</h2>
-				<ProductCards :cards='store.sectionCard' />
+				<ProductCards :cards='store.sectionCard.value' />
 
 			</div>
 		</div>

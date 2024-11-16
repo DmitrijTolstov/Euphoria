@@ -24,7 +24,6 @@ import Wishlistcard from './Wishlistcard.vue';
 </template>
 <style scoped lang='scss'>
 .ordersDetails {
-	&-arrow {}
 
 	&__title {}
 

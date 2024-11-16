@@ -4,6 +4,10 @@ import Estimation from '../Estimation.vue';
 import SizePicker from '../SizePicker.vue'
 import Button from '@/components/Button.vue'
 import CardSlider from './CardSlider.vue';
+import Breadcrumbs from '../Breadcrumbs.vue';
+import productCard from '../../stores/ProductCard';
+
+const store = productCard()
 
 </script>
 <template>
@@ -13,13 +17,12 @@ import CardSlider from './CardSlider.vue';
 			<CardSlider />
 		</div>
 		<div class="card_image">
-			<img src="@/assets/images/productCard/image-1.png" alt="">
+			<img :src="store.fullCard.images" alt="">
 		</div>
 		<div class="card-content">
-			<div class="card-content_breadCrumbs"></div>
+			<Breadcrumbs />
 			<h2 class="card-content__title">
-				Raven Hoodie With
-				Black colored Design
+				{{ store.fullCard.name }}
 			</h2>
 			<div class="card-content_estimation">
 				<Estimation :stars='5' />
@@ -112,8 +115,6 @@ import CardSlider from './CardSlider.vue';
 
 	&-content {
 		margin-left: 42px;
-
-		&_breadCrumbs {}
 
 		&__title {
 			font-size: $card-title;

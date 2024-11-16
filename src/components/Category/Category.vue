@@ -10,7 +10,6 @@ const props = defineProps({
 
 })
 
-const cards = ref(props.cards)
 
 </script>
 <template>
@@ -18,7 +17,7 @@ const cards = ref(props.cards)
 	<main class="category">
 		<h2 class="category-content__title">Categories For {{ title }}</h2>
 		<section class="category-cards">
-			<LinkCard v-for='card in cards' :key='card' :image='card.image' :title='card.content.title'
+			<LinkCard v-for='card in props.cards' :key='card' :image='card.image' :title='card.content.title'
 				:name='card.content.name' />
 		</section>
 	</main>

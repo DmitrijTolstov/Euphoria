@@ -18,8 +18,8 @@ const props = defineProps({
 <template>
 
 	<div class='cards'>
-		<ProductCard v-for='card in props.cards' :key='card' :images='card.images' :name='card.name' :brand='card.brand'
-			:price='card.price' />
+		<ProductCard v-for='card in props.cards' :id='card.id' :images='card.images' :name='card.name'
+			:brand='card.brand' :price='card.price' />
 	</div>
 
 

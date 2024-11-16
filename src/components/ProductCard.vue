@@ -1,21 +1,28 @@
 <script setup>
-import router from '../router/routes';
 import { productCard } from '../stores/ProductCard';
-
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+const router = useRouter()
 const props = defineProps({
 	name: String,
 	price: Number,
 	brand: String,
 	images: String,
+	id: Number
 
 })
-let openDescription = () => {
+
+const store = productCard()
+
+const directionForFullCard = computed(() => {
 	router.push('/fullDescription')
-}
+	return store.fullCardDescription(props.id)
+})
+
 
 </script>
 <template>
-	<div @click='openDescription()' class="productCard">
+	<div @click='directionForFullCard' class="productCard">
 		<img :src="props.images" alt="">
 		<div class="productCard-content">
 			<div class="productCard-content__description">
