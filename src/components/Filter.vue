@@ -4,7 +4,6 @@ import DoubleSliderPrice from './DoubleSliderPrice.vue';
 import SizePicker from './SizePicker.vue';
 
 import { slider } from '../stores/slider';
-
 const store = slider()
 
 </script>
@@ -72,13 +71,13 @@ const store = slider()
 				<details>
 					<summary>Colors</summary>
 					<div class="filter-colors">
-						<ColorPicker />
+						<ColorPicker :fullCard='false' />
 					</div>
 				</details>
 				<details>
 					<summary>Size</summary>
 					<div class="filter-size">
-						<SizePicker />
+						<SizePicker :fullCard='false' />
 					</div>
 				</details>
 				<details>
@@ -209,7 +208,8 @@ const store = slider()
 
 		input {
 			max-width: 97px;
-			text-align: center;		}
+			text-align: center;
+		}
 
 
 	}

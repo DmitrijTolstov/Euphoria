@@ -1,21 +1,61 @@
 <script setup>
+import { computed, ref } from 'vue';
+let colorArr = ref([
+	{
+		color: 'purple',
+		active: false
+	}
+	, {
+		color: 'red',
+		active: false
+	}, {
+		color: 'white',
+		active: false
+	}, {
+		color: 'black',
+		active: false
+	}, { color: 'yellow' },
+	{
+		color: 'blue',
+		active: false
+	}, {
+		color: 'pink',
+		active: false
+	}])
 
-let colorArr = ['purple', 'red', 'white', 'black', 'yellow', 'blue', 'pink']
+let props = defineProps({
+	fullCard: Boolean
+})
+
+const activeColor = (ind) => {
+
+	if (colorArr.value.some(item => item.active === true)) {
+
+		colorArr.value.map(item => item.active = false)
+		colorArr.value[ind].active = !colorArr.value[ind].active
+
+	} else {
+
+		colorArr.value[ind].active = !colorArr.value[ind].active
+	}
+
+}
 
 </script>
 
 <template>
-	<div class="colorPicker" v-for='item in colorArr'>
-		<template>
-			<div class="colorPicker-color" :style='{ backgroundColor: item }'></div>
+	<div class="colorPicker" v-for='({ color, active }, ind) in colorArr'>
+		<template v-if='!props.fullCard'>
+			<div class="colorPicker-color" :style='{ backgroundColor: color }'></div>
 
-			<p class="colorPicker__text">{{ item }}</p>
+			<p class="colorPicker__text">{{ color }}</p>
 		</template>
 
 
-		<template v-if='true'>
-			<div class="colorPicker-box">
-				<div class="colorPicker-color_card" :style='{ backgroundColor: item }'></div>
+		<template v-if='props.fullCard'>
+			<div class="colorPicker-box" @click='activeColor(ind)' :style='{ borderColor: active ? "black" : "white" }'>
+				<button class="colorPicker-color_card" :style='{ backgroundColor: color }'></button>
+
 			</div>
 		</template>
 
@@ -39,6 +79,7 @@ let colorArr = ['purple', 'red', 'white', 'black', 'yellow', 'blue', 'pink']
 		&:has(.colorPicker-color_card:hover) {
 			border-color: black;
 		}
+
 	}
 
 	&-color {
@@ -46,6 +87,7 @@ let colorArr = ['purple', 'red', 'white', 'black', 'yellow', 'blue', 'pink']
 		height: 36px;
 		border-radius: 12px;
 		margin-block-end: 12px;
+		cursor: pointer;
 
 		&_card {
 			width: 22px;

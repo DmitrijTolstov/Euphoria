@@ -40,13 +40,13 @@ const store = productCard()
 					<p>Size Guide</p>
 				</div>
 				<div class="card-size_select">
-					<SizePicker />
+					<SizePicker :fullCrd='true' />
 				</div>
 			</div>
 			<div class="card-color">
 				<p class="card-color__text">Colours Available </p>
 				<div class="card-color_select">
-					<ColorPicker />
+					<ColorPicker :fullCard='true' />
 				</div>
 			</div>
 			<div class="card_btns">

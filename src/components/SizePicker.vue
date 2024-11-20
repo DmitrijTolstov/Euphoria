@@ -1,18 +1,20 @@
 <script setup>
-
 let sizeArr = ['XXS', 'XL', 'XS', 'S', 'M', 'L', 'XXL', '3XL', '4XL']
 
 import { computed } from 'vue';
+const props = defineProps({
+	fullCard: Boolean
+})
 
 let width = computed(() => {
-	return true ? '61px' : '30px'
+	return props.fullCard ? '30px' : '61px'
 })
 
 </script>
 <template>
 	<div class="sizePicker" v-for='item in sizeArr'>
 
-		<div :style='{ width: width }' class="sizePicker-size">{{ item }} </div>
+		<button :style='{ minWidth: width }' class="sizePicker-size">{{ item }} </button>
 
 	</div>
 </template>
@@ -21,7 +23,6 @@ let width = computed(() => {
 	text-align: center;
 
 	&-size {
-		// width: 30px;
 		height: 30px;
 		border: 1px solid $border-feedback;
 		border-radius: 8px;
@@ -34,6 +35,8 @@ let width = computed(() => {
 		transition: all .3s linear;
 		cursor: pointer;
 
+		&:active,
+		&:focus,
 		&:hover {
 			background-color: $gray;
 			color: white;
