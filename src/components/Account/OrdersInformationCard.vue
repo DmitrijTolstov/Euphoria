@@ -1,7 +1,10 @@
 <script setup>
+import { account } from '@/stores/account';
+let store = account()
+
 </script>
 <template>
-	<div class="orders-info">
+	<div @click='store.findComponent("ordersDetails")' class="orders-info">
 		<div class="orders-information">
 			<h4 class="orders-information__num">Order no: #123456789</h4>
 			<p class="orders-information__text"><b>Order Date </b><span>: 2 June 2023 2:40 PM</span> </p>
@@ -23,6 +26,7 @@
 	padding-block: 28px;
 	padding-inline: 47px;
 	border-radius: 12px;
+	cursor: pointer;
 
 	&>div>p>span {
 		opacity: .6;
