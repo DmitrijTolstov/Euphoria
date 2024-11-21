@@ -1,7 +1,9 @@
 <script setup>
-import Wishlistcard from '../Account/Wishlistcard.vue';
+import { account } from '@/stores/account';
 import Button from '../button.vue';
+import ProductCardAddToCart from '../ProductCardAddToCart.vue';
 
+const store = account()
 
 
 </script>
@@ -17,8 +19,9 @@ import Button from '../button.vue';
 			<a>subtotal</a>
 			<a>action</a>
 		</div>
-		<div class="productCart-list">
-			<Wishlistcard />
+		<div class="productCart-list" v-for='{ img, price, title, color, size, id } in store.getProductCardInCart'
+			:key='id'>
+			<ProductCardAddToCart :id='id' :img='img' :title='title' :color='color' :size='size' :price='price' />
 		</div>
 	</section>
 
