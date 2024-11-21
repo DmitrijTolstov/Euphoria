@@ -1,5 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue';
+import { account } from '../stores/account';
+const store = account()
 let colorArr = ref([
 	{
 		color: 'purple',
@@ -32,12 +34,15 @@ const activeColor = (ind) => {
 	if (colorArr.value.some(item => item.active === true)) {
 
 		colorArr.value.map(item => item.active = false)
+
 		colorArr.value[ind].active = !colorArr.value[ind].active
 
 	} else {
 
 		colorArr.value[ind].active = !colorArr.value[ind].active
 	}
+
+	store.color = colorArr.value[ind].color
 
 }
 

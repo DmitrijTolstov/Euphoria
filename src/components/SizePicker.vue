@@ -2,6 +2,10 @@
 let sizeArr = ['XXS', 'XL', 'XS', 'S', 'M', 'L', 'XXL', '3XL', '4XL']
 
 import { computed } from 'vue';
+import { account } from '../stores/account';
+
+const store = account()
+
 const props = defineProps({
 	fullCard: Boolean
 })
@@ -12,7 +16,7 @@ let width = computed(() => {
 
 </script>
 <template>
-	<div class="sizePicker" v-for='item in sizeArr'>
+	<div @click='store.size = item' class="sizePicker" v-for='item in sizeArr'>
 
 		<button :style='{ minWidth: width }' class="sizePicker-size">{{ item }} </button>
 
