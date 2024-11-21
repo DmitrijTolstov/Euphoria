@@ -1,17 +1,25 @@
 <script setup>
-import Wishlistcard from './Wishlistcard.vue';
+import WishlistCard from '@/components/wishlistCard.vue';
+import EmptyWishlist from '../EmptyWishlist.vue';
+import productCard from '@/stores/ProductCard';
+
+const store = productCard()
 
 
 </script>
 
 <template>
 	<section class="wishList">
-		<h2 class="wishList__title">Wishlist</h2>
-		<div class="wishList-product">
-			<Wishlistcard />
-			<Wishlistcard />
-			<Wishlistcard />
-		</div>
+		<template v-if='store.wishlist.length'>
+			<h2 class="wishList__title">Wishlist</h2>
+			<div class="wishList-product">
+				<WishlistCard />
+			</div>
+		</template>
+
+		<template v-else>
+			<EmptyWishlist />
+		</template>
 
 	</section>
 </template>

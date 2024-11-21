@@ -17,7 +17,8 @@ import Button from './button.vue';
 				You don’t have any products in the wishlist yet. You will find a lot
 				of interesting products on our Shop page.
 			</p>
-			<Button class='emptyWishlist_btn' :title='"Continue Shopping"'></Button>
+			<Router-link to='/shop'><Button class='emptyWishlist_btn'
+					:title='"Continue Shopping"'></Button></Router-link>
 
 		</div>
 	</section>
