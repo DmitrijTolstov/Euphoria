@@ -1,12 +1,7 @@
 <script setup>
 
-import FormAccount from '../FormAccount.vue';
-import AddAddress from './AddAddress.vue';
-
-
-
-
-
+import FormAccount from '@/components/Account/FormAccount.vue';
+import Address from '@/components/Account/Address.vue';
 
 </script>
 <template>
@@ -14,8 +9,8 @@ import AddAddress from './AddAddress.vue';
 	<section class="info">
 		<h2 class="info__title">My Info</h2>
 		<p class="info__text">Contact Details</p>
-		<!-- <FormAccount /> -->
-		<AddAddress />
+		<FormAccount :component='"contactDetails"' />
+		<Address />
 	</section>
 
 </template>
@@ -32,7 +27,6 @@ import AddAddress from './AddAddress.vue';
 		font-size: 22px;
 		font-weight: 600;
 	}
-
 
 
 

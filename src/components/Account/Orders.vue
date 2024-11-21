@@ -1,7 +1,7 @@
 <script setup>
 import Button from '../button.vue';
+import OrdersCard from '../OrdersCard.vue';
 import OrdersInformationCard from './OrdersInformationCard.vue';
-import Wishlistcard from './Wishlistcard.vue';
 
 
 </script>
@@ -17,9 +17,9 @@ import Wishlistcard from './Wishlistcard.vue';
 		</div>
 		<div class="orders-content">
 			<OrdersInformationCard />
-			<Wishlistcard />
+			<OrdersCard />
 			<OrdersInformationCard />
-			<Wishlistcard />
+			<OrdersCard />
 
 		</div>
 	</section>

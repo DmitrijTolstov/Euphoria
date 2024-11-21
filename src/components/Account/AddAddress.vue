@@ -1,5 +1,5 @@
 <script setup>
-import FormAccount from '../FormAccount.vue';
+import FormAccount from './FormAccount.vue';
 
 
 </script>

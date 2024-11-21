@@ -1,8 +1,7 @@
 <script setup>
 import Progress from '../Progress.vue';
 import OrdersInformationCard from './OrdersInformationCard.vue';
-import Wishlistcard from './Wishlistcard.vue';
-
+import OrdersDetailsCard from '../OrdersDetailsCard.vue';
 
 </script>
 <template>
@@ -17,15 +16,14 @@ import Wishlistcard from './Wishlistcard.vue';
 			<p>Your order has been successfully verified.</p>
 		</div>
 		<div class="ordersDetails-cards">
-			<Wishlistcard />
-			<Wishlistcard />
+			<OrdersDetailsCard />
+			<OrdersDetailsCard />
 		</div>
 	</section>
 </template>
 <style scoped lang='scss'>
 .ordersDetails {
 
-	&__title {}
 
 	&-info {
 		background-color: $light-gray;
@@ -65,6 +63,8 @@ import Wishlistcard from './Wishlistcard.vue';
 		display: flex;
 		flex-direction: column;
 		padding-inline: 50px;
+		padding-block: 30px;
+		gap: 60px;
 		background-color: $light-gray;
 		border-radius: 8px;
 		margin-block-end: 100px;

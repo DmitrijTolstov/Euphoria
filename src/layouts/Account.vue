@@ -8,10 +8,11 @@ import EmptyWishlist from '../components/EmptyWishlist.vue';
 import Footer from '../components/Footer.vue';
 import Header from '../components/Header.vue';
 import ProductCard from '../components/ProductCard.vue';
-import { account } from '../stores/account';
-import EmptyCart from './EmptyCart.vue';
 import Error404 from './Error404.vue';
-import { reactive, ref, computed } from 'vue'
+import AddAddressForm from '../components/Account/AddAddressForm.vue';
+import { computed } from 'vue'
+import { account } from '../stores/account';
+
 let store = account()
 
 let components = {
@@ -20,7 +21,8 @@ let components = {
 	'emptyWishlist': EmptyWishlist,
 	'orders': Orders,
 	'ordersDetails': OrdersDetails,
-	'myInfo': MyInfo
+	'myInfo': MyInfo,
+	'addAddress': AddAddressForm
 }
 
 let showComponent = computed(() => {
