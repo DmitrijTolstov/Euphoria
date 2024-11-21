@@ -1,14 +1,15 @@
 <script setup>
-import ColorPicker from '../ColorPicker.vue';
-import Estimation from '../Estimation.vue';
-import SizePicker from '../SizePicker.vue'
+import ColorPicker from '@/components/ColorPicker.vue';
+import Estimation from '@/components/Estimation.vue';
+import SizePicker from '@/components/SizePicker.vue'
 import Button from '@/components/Button.vue'
-import CardSlider from './CardSlider.vue';
-import Breadcrumbs from '../Breadcrumbs.vue';
-import productCard from '../../stores/ProductCard';
+import CardSlider from '@/components/CardComponents/CardSlider.vue';
+import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import productCard from '@/stores/ProductCard';
+import { account } from '@/stores/account';
 
 const store = productCard()
-
+const storeAccount = account()
 </script>
 <template>
 
@@ -58,7 +59,7 @@ const store = productCard()
 					</svg>
 
 				</div>
-				<Button class='addCart' :title='"Add to cart"' />
+				<Button @click='storeAccount.addProduct()' class='addCart' :title='"Add to cart"' />
 				<Button :title='"$63.00"' />
 			</div>
 			<div class="card-information">
