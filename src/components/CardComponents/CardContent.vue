@@ -59,7 +59,7 @@ const storeAccount = account()
 					</svg>
 
 				</div>
-				<Button @click='storeAccount.addProduct()' class='addCart' :title='"Add to cart"' />
+				<Button @click='storeAccount.addProduct(store.fullCard)' class='addCart' :title='"Add to cart"' />
 				<Button :title='"$63.00"' />
 			</div>
 			<div class="card-information">
