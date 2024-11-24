@@ -1,19 +1,27 @@
 <script setup>
+import { account } from '@/stores/account';
+import { storeToRefs } from 'pinia';
+
+const store = account()
+
+const { getProductCardInCart } = storeToRefs(store)
+
+
 </script>
 <template>
-	<div class="card">
+	<div class="card" v-for='{ images, color, name, price, id } in getProductCardInCart'>
 		<div class="card-header">
-			<img src="@/assets/images/productCard/image-1.png" alt="">
+			<img :src="images" alt="">
 			<div class="card-header_text">
-				<p class="product-content__title"><b>Blue Flower Print Crop Top</b></p>
-				<p class="product-content__color"><b>Color</b> : Yellow</p>
+				<p class="product-content__title"><b>{{ name }}</b></p>
+				<p class="product-content__color"><b>Color</b> : {{ color }}</p>
 			</div>
 		</div>
 
 		<div class="card-content">
 			<p class="quantity"><b>Qty</b> : 1</p>
-			<p class="price"><b>$29.00</b></p>
-			<button><img src="@/assets/images/icons/x.svg" alt=""></button>
+			<p class="price"><b>${{ price }}.00</b></p>
+			<button @click='store.deleteProduct(id)'><img src="@/assets/images/icons/x.svg" alt=""></button>
 		</div>
 	</div>
 
