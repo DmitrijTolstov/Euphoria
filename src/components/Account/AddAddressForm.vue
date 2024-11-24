@@ -44,7 +44,7 @@ import Button from '../button.vue';
 			<label for="code">Postal Code*</label>
 			<input id='code' type="text">
 		</div>
-		<div class="form_input  form_input__newAddress_area">
+		<div class="form_input  form_input__newAddress form_input__newAddress_area">
 			<label for="instruction">Delivery Instruction</label>
 			<textarea name="instruction" id="instruction" placeholder='Delivery Instruction'></textarea>
 		</div>
@@ -64,4 +64,4 @@ import Button from '../button.vue';
 		</div>
 	</div>
 </template>
-<style scoped lang='scss'></style>
+<style lang='scss'></style>

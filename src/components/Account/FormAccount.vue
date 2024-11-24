@@ -21,7 +21,7 @@ let component = computed(() => {
 </script>
 <template>
 
-	<form class='form'>
+	<form class='form-info'>
 
 		<component :is="component"></component>
 

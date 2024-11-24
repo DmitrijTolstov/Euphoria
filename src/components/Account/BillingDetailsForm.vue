@@ -1,4 +1,5 @@
 <script setup>
+import Button from '../button.vue';
 </script>
 <template>
 	<div class="form-billingDetails">

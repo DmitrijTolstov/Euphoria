@@ -19,9 +19,11 @@ const store = account()
 			<a>subtotal</a>
 			<a>action</a>
 		</div>
-		<div class="productCart-list" v-for='{ img, price, title, color, size, id } in store.getProductCardInCart'
-			:key='id'>
-			<ProductCardAddToCart :id='id' :img='img' :title='title' :color='color' :size='size' :price='price' />
+		<div class="productCart-container">
+			<div class="productCart-list" v-for='{ images, price, name, color, size, id } in store.getProductCardInCart'
+				:key='id'>
+				<ProductCardAddToCart :id='id' :img='images' :name='name' :color='color' :size='size' :price='price' />
+			</div>
 		</div>
 	</section>
 
@@ -30,6 +32,13 @@ const store = account()
 <style scoped lang='scss'>
 .productCart {
 	margin-block-start: 40px;
+
+	&-container {
+		display: flex;
+		flex-direction: column;
+		gap: 100px;
+		overflow-y: hidden;
+	}
 
 	&-details {
 		color: $light-gray;
@@ -41,17 +50,6 @@ const store = account()
 		margin-block-end: 50px;
 		position: relative;
 
-		&::before {
-			content: '';
-			width: 100vw;
-			height: 100%;
-			left: 50%;
-			transform: translateX(-50%);
-			position: absolute;
-			background-color: $gray;
-			z-index: -1;
-		}
-
 		a {
 			color: white;
 			text-transform: uppercase;
@@ -61,6 +59,32 @@ const store = account()
 			}
 		}
 
+		&::after {
+			position: absolute;
+			content: '';
+			width: 100vw;
+			height: 100%;
+			background-color: $gray;
+			z-index: -1;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+	}
+
+	&-list {
+		position: relative;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 1px;
+			left: 0;
+			top: -50px;
+			position: absolute;
+			background-color: $gray;
+			z-index: -1;
+		}
 	}
 
 }
