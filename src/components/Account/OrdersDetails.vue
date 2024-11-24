@@ -2,27 +2,51 @@
 import Progress from '../Progress.vue';
 import OrdersInformationCard from './OrdersInformationCard.vue';
 import OrdersDetailsCard from '../OrdersDetailsCard.vue';
-
+import { account } from '@/stores/account';
+const store = account()
 </script>
 <template>
 	<section class="ordersDetails">
-		<div class="ordersDetails-arrow">
+		<div class="ordersDetails-link">
+			<router-link to='/orders' style='padding: 10px;'>
+				<div class="arrow"></div>
+			</router-link>
+			<h2 class="ordersDetails__title">Order Details</h2>
 		</div>
-		<h2 class="ordersDetails__title">Order Details</h2>
 		<OrdersInformationCard />
 		<Progress />
 		<div class="ordersDetails-info">
 			<p><span>8 June 2023 3:40 PM </span></p>
 			<p>Your order has been successfully verified.</p>
 		</div>
-		<div class="ordersDetails-cards">
-			<OrdersDetailsCard />
+		<div v-if="store.getProductCardInCart.length" class="ordersDetails-cards">
 			<OrdersDetailsCard />
 		</div>
 	</section>
 </template>
 <style scoped lang='scss'>
 .ordersDetails {
+
+	&__title {
+		font-size: 22px;
+		font-weight: 600;
+		margin-inline-start: 18px;
+	}
+
+	&-link {
+		display: flex;
+		align-items: center;
+		margin-block-end: 50px;
+
+		.arrow {
+			width: 8px;
+			height: 8px;
+			border-left: 1px solid black;
+			border-top: 1px solid black;
+			transform: rotate(-45deg);
+			cursor: pointer;
+		}
+	}
 
 
 	&-info {

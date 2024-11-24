@@ -7,27 +7,13 @@ import Wishlist from '../components/Account/Wishlist.vue';
 import EmptyWishlist from '../components/EmptyWishlist.vue';
 import Footer from '../components/Footer.vue';
 import Header from '../components/Header.vue';
+
 import ProductCard from '../components/ProductCard.vue';
 import Error404 from './Error404.vue';
 import AddAddressForm from '../components/Account/AddAddressForm.vue';
 import { computed } from 'vue'
 import { account } from '../stores/account';
-
-let store = account()
-
-let components = {
-	'address': Address,
-	'wishlist': Wishlist,
-	'emptyWishlist': EmptyWishlist,
-	'orders': Orders,
-	'ordersDetails': OrdersDetails,
-	'myInfo': MyInfo,
-	'addAddress': AddAddressForm
-}
-
-let showComponent = computed(() => {
-	return components[store.component]
-})
+import FormAccount from '../components/Account/FormAccount.vue';
 
 
 
@@ -44,18 +30,24 @@ let showComponent = computed(() => {
 					</div>
 					<p class="account__text">Welcome to your Account</p>
 					<div class="account-links">
-						<div @click='store.findComponent("orders")' class="account-link">
-							<img src="@/assets/images/icons/orders.svg" alt="">
-							My orders
-						</div>
-						<div @click='store.findComponent("wishlist")' class="account-link">
-							<img src="@/assets/images/icons/heart.svg" alt="">
-							Wishlist
-						</div>
-						<div @click='store.findComponent("myInfo")' class="account-link">
-							<img src="@/assets/images/icons/user.svg" alt="">
-							My info
-						</div>
+						<Router-link to='/orders'>
+							<div class="account-link">
+								<img src="@/assets/images/icons/orders.svg" alt="">
+								My orders
+							</div>
+						</router-link>
+						<Router-link to='/wishlist'>
+							<div class="account-link">
+								<img src="@/assets/images/icons/heart.svg" alt="">
+								Wishlist
+							</div>
+						</Router-link>
+						<Router-link to='/myInfo'>
+							<div class="account-link">
+								<img src="@/assets/images/icons/user.svg" alt="">
+								My info
+							</div>
+						</router-link>
 						<div class="account-link">
 							<img src="@/assets/images/icons/sign.svg" alt="">
 							Sign out
@@ -63,7 +55,7 @@ let showComponent = computed(() => {
 					</div>
 				</div>
 				<div class="account-info">
-					<component :is='showComponent'></component>
+					<router-view></router-view>
 				</div>
 			</div>
 			<div v-if='store.wishlist.length' class="account-viewed">

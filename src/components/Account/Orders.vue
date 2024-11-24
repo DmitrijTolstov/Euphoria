@@ -18,9 +18,7 @@ import OrdersInformationCard from './OrdersInformationCard.vue';
 		<div class="orders-content">
 			<OrdersInformationCard />
 			<OrdersCard />
-			<OrdersInformationCard />
-			<OrdersCard />
-
+			<router-view name='ordersDetails'></router-view>
 		</div>
 	</section>
 </template>

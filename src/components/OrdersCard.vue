@@ -1,20 +1,27 @@
 <script setup>
+import { account } from '@/stores/account';
 import Button from './button.vue';
+const store = account()
+
+let cards = store.getProductCardInCart
+
 
 </script>
 <template>
-	<div class="card">
+	<div class="card" v-for='{ images, name, price, color } in cards'>
 		<div class="card-header">
-			<img src="@/assets/images/productCard/image-1.png" alt="">
+			<img :src='images' alt="">
 			<div class="card-header_text">
-				<p class="card-header__title"><b>Blue Flower Print Crop Top</b></p>
-				<p class="card-header__color"><b>Color</b> : Yellow</p>
+				<p class="card-header__title"><b>{{ name }}</b></p>
+				<p class="card-header__color"><b>Color</b> : {{ color }}</p>
 				<p class="card-header__quantity"><b>Quantity</b> : 1</p>
-				<p class="card-header__total"><b>Total</b> : $23.00</p>
+				<p class="card-header__total"><b>Total</b> : ${{ price }}.00</p>
 			</div>
 		</div>
 		<div class="card-content">
-			<Button class='card-content_btn' :title="'View Detail'"> </Button>
+			<router-link to='/ordersDetails'>
+				<Button class='card-content_btn' :title="'View Detail'"> </Button>
+			</router-link>
 		</div>
 	</div>
 

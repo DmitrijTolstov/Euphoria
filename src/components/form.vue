@@ -41,7 +41,9 @@ const sign = computed(() => {
             <span v-else> Use 8 or more characters with a mix of letters, numbers &
                 symbols</span>
         </div>
-        <Button @click='this.$router.push("/shop")' v-if="store.login" class='form_btn' :title='"Sign In"' />
+        <Router-link to='/shop'>
+            <Button v-if="store.login" class='form_btn' :title='"Sign In"' />
+        </Router-link>
 
         <template v-if='!store.login'>
             <div class="form-checkbox">
@@ -120,7 +122,7 @@ const sign = computed(() => {
     }
 
     &_btn {
-        @include button(false, true, true)
+        @include button(false, true, white)
     }
 
 }

@@ -1,6 +1,8 @@
 <script setup>
+import { account } from '@/stores/account';
 import Button from '../button.vue';
 
+const store = account()
 </script>
 
 <template>
@@ -15,7 +17,9 @@ import Button from '../button.vue';
 		</p>
 		<div class="card-btns">
 			<Button class='card-btns_btn' :title='"Home"'></Button>
-			<Button class='card-btns_btn' :title='"Default billing address"'></Button>
+			<Router-link to='/checkOut'>
+				<Button class='card-btns_btn' :title='"Default billing address"'></Button>
+			</Router-link>
 		</div>
 		<div class="card-btns_edit">
 			<Button :title='"Remove"' class='remove'></Button>
